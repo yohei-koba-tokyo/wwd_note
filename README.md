@@ -18,6 +18,7 @@
 - has_many :memos, dependent: :destroy
 - has_many:notes, dependent: :destroy
 - has_many:comments, dependent: :destroy
+- has_many:likes, dependent: :destroy
 - has_one :config, dependent: :destroy
 
 
@@ -77,6 +78,7 @@
 - belongs_to :user
 - belongs_to :memo
 - has_many :comments, dependent: :destroy
+- has_many :likes, dependent: :destroy
 
 ### tutor テーブル
 
