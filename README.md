@@ -3,7 +3,9 @@
 
 # DB creation
 
-### user テーブル
+![erd](https://user-images.githubusercontent.com/60637308/83595238-5f441500-a59c-11ea-9cd5-8f6dee574618.png)
+
+### User table
 
 |Column|Type|Options|
 |------|----|-------|
@@ -14,6 +16,7 @@
 
 ##### - Association -
 
+
 - has_many :relationships, dependent: :destroy
 - has_many :memos, dependent: :destroy
 - has_many:notes, dependent: :destroy
@@ -23,7 +26,7 @@
 
 
 
-### relationship テーブル
+### Relationship table
 
 |Column|Type|Options|
 |------|----|-------|
@@ -36,7 +39,7 @@
 - belongs_to :follow
 
 
-### config テーブル
+### Config table
 
 |Column|Type|Options|
 |------|----|-------|
@@ -49,7 +52,7 @@
 
 - belongs_to :user
 
-### memo テーブル
+### Memo table
 
 |Column|Type|Options|
 |------|----|-------|
@@ -59,9 +62,10 @@
 ##### - Association -
 
 - belongs_to :user
+- has_one :note
 
 
-### note テーブル
+### Note table
 
 |Column|Type|Options|
 |------|----|-------|
@@ -80,7 +84,7 @@
 - has_many :comments, dependent: :destroy
 - has_many :likes, dependent: :destroy
 
-### tutor テーブル
+### Tutor table
 
 |Column|Type|Options|
 |------|----|-------|
@@ -91,7 +95,7 @@
 
 none
 
-### comment テーブル
+### Comment table
 
 |Column|Type|Options|
 |------|----|-------|
@@ -104,7 +108,7 @@ none
 - belongs_to :user
 - belongs_to :note
 
-### like テーブル
+### Like table
 
 |Column|Type|Options|
 |------|----|-------|
