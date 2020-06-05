@@ -1,9 +1,6 @@
-
-
-
 # DB creation
 
-![erd](https://user-images.githubusercontent.com/60637308/83595238-5f441500-a59c-11ea-9cd5-8f6dee574618.png)
+![erd](https://user-images.githubusercontent.com/60637308/83866540-e9d67100-a762-11ea-9aeb-e52f476dc7e5.png)
 
 ### User table
 
@@ -47,6 +44,7 @@
 |plan|integer|null:false|
 |remind|integer|null:false|
 |publishing|integer|null:false|
+|theme|string||
 
 ##### - Association -
 
