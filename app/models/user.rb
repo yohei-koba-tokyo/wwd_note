@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   mount_uploader :image, ImageUploader
 
+  has_many :memos
   # follow機能のためのアソシエーション
   has_many :relationships
   has_many :followings, through: :relationships, source: :follow

@@ -4,7 +4,9 @@
   =link_to "logout", destroy_user_session_path, method: :DELETE
   - @users.each do |user|
     = render "relationships/follow_button", user: user
+  = render @memos
 -else
   =link_to "login", user_session_path
+
 
 
