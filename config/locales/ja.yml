@@ -1,0 +1,7 @@
+ja:
+  date:
+    formats:
+      default: '%_-m/%_-d(%a)'
+  time:
+    formats:
+      default: '%_-m/%_-d(%a) %H:%M'
