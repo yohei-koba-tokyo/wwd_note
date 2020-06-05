@@ -2,9 +2,13 @@
 - if user_signed_in?
   = current_user.name
   =link_to "logout", destroy_user_session_path, method: :DELETE
+  %hr/
   - @users.each do |user|
     = render "relationships/follow_button", user: user
+  %hr/
   = render @memos
+  %hr/
+  = render partial: "form", locals: { memo: @memo }
 -else
   =link_to "login", user_session_path
 
