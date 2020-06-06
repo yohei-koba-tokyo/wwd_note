@@ -1,7 +1,8 @@
 
 - if user_signed_in?
+  %br/
   = current_user.name
-  =link_to "logout", destroy_user_session_path, method: :DELETE
+  =link_to "ログアウト", destroy_user_session_path, class:"button",method: :DELETE
   %hr/
   - @users.each do |user|
     = render "relationships/follow_button", user: user

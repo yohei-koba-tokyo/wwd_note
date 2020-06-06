@@ -7,7 +7,6 @@ class MemosController < ApplicationController
 
   def create
     Memo.create(memo_params)
-    # logger.debug Memo.create(memo_params).errors.inspect
     redirect_to root_path
   end
 
