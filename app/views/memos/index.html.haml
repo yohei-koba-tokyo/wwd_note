@@ -9,7 +9,7 @@
   %hr/
   = render @memos
   %hr/
-  = render partial: "form", locals: { memo: @memo }
+  = render partial: "form", locals: { memos: @memos_new }
 -else
   =link_to "login", user_session_path
 
