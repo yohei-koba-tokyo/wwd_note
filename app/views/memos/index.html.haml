@@ -1,17 +1,14 @@
 
 - if user_signed_in?
-  %br/
   = current_user.name
   =link_to "ログアウト", destroy_user_session_path, class:"button",method: :DELETE
   %hr/
   - @users.each do |user|
     = render "relationships/follow_button", user: user
   %hr/
-  = render @memos
+  = render partial: "form", locals: { memos: @memos }
   %hr/
-  = render partial: "form", locals: { memos: @memos_new }
+  - memos_index = 0
+  = render partial: "weekly_memos", locals: {memos: current_user.get_weekly_memos(memos_index), memos_index: memos_index}
 -else
-  =link_to "login", user_session_path
-
-
-
+  =link_to "login", user_session_path, class:"button"

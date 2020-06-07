@@ -27,4 +27,10 @@ class User < ApplicationRecord
     self.followings.include?(other_user)
   end
 
+  def get_weekly_memos(memos_index)
+    from = Time.current.at_beginning_of_day - (7 * (memos_index + 1) - 1).day
+    to   = Time.current.at_end_of_day - (7 * memos_index).day
+    memos.where(created_at: from...to).group_by {|i| i.created_at.strftime("%m/%d(#{%w(日 月 火 水 木 金 土)[i.created_at.wday]})")}
+  end
+
 end
