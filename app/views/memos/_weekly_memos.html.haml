@@ -1,5 +1,5 @@
 - 7.times do |i|
-  - calender_date = Time.current - (7 * memos_index + i).day
+  - calender_date = Time.current - (7 * memos_index + i + 1).day
   - calender = calender_date.strftime("%m/%d(#{%w(日 月 火 水 木 金 土)[calender_date.wday]})")
   = calender
   %br/

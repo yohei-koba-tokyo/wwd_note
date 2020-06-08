@@ -11,11 +11,14 @@ class MemoCollection
   def initialize(attributes = [])
     if attributes.present?
       self.collection = attributes.map do |value|
+
         Memo.new(
           memo: value['memo'],
           user_id: value['user_id']
         )
+        
       end
+      p self.collection
     else
       self.collection = MEMO_NUM.times.map{ Memo.new }
     end

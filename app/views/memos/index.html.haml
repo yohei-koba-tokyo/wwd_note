@@ -2,13 +2,22 @@
 - if user_signed_in?
   = current_user.name
   =link_to "ログアウト", destroy_user_session_path, class:"button",method: :DELETE
+
   %hr/
-  - @users.each do |user|
-    = render "relationships/follow_button", user: user
-  %hr/
-  = render partial: "form", locals: { memos: @memos }
+  - if @todays_memos.present?
+    編集
+    = render partial: "form", locals: { memos: @todays_memos }
+  - else
+    新規
+    = render partial: "form", locals: { memos: @memos }
+
   %hr/
   - memos_index = 0
   = render partial: "weekly_memos", locals: {memos: current_user.get_weekly_memos(memos_index), memos_index: memos_index}
+
+  %hr/
+  - @users.each do |user|
+    = render "relationships/follow_button", user: user
+
 -else
   =link_to "login", user_session_path, class:"button"
