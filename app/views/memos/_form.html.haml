@@ -1,0 +1,7 @@
+= form_with(model: memos, url: memos_path, local: true) do |form|
+  - memos.collection.each do |memo|
+    = fields_for 'memos[]', memo do |field|
+      %br/
+      = field.text_field :memo
+  %br/
+  = form.submit "保存する"
