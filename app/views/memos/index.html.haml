@@ -12,6 +12,7 @@
     = render partial: "form", locals: { memos: @memos }
 
   - memos_index = 0
+  -# %input{id:"calendar-data", type: "hidden", value:  }
   = render partial: "weekly_memos", locals: {memos: current_user.get_weekly_memos(memos_index), memos_index: memos_index}
 
   %hr/
