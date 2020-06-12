@@ -1,0 +1,24 @@
+.weekly_memos {
+  border: solid 1px black;
+  display: flex;
+  margin:10px;
+  &__calender {
+    width: 45px;
+    margin: 5px;
+    padding: 20px 0;
+    text-align: center;
+    background-color: seashell;
+    font-size: 1.2rem;
+    &__week {
+      font-size: 2rem;
+    }
+  }
+  &__memo {
+
+    padding-left: 10px;
+    width: 90%;
+    &__line {
+      border-bottom: dashed 1px grey;
+    }
+  }
+}

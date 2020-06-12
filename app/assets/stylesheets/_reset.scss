@@ -34,7 +34,7 @@ a {
 }
 
 // ボタンスタイルの共通化
-a.button, input {
+a.button, button.button, input {
   display: inline-block;
   padding: 4px 6px;
   border: 1px solid;
@@ -44,7 +44,10 @@ a.button, input {
   background-color: white;
 }
 
-
+ul, li {
+  list-style: none;
+  padding: 0;
+}
 
 @media screen and (min-width: 1200px) {
   h1{

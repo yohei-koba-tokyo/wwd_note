@@ -1,11 +1,13 @@
 - 7.times do |i|
   - calender_date = Time.current - (7 * memos_index + i + 1).day
   - calender = calender_date.strftime("%m/%d(#{%w(日 月 火 水 木 金 土)[calender_date.wday]})")
-  = calender
-  %br/
-  - memos["#{calender}"]&.each do |memo|
-    = memo.memo
-    %br/
-  %br/
-  %br/
+
+
+  .weekly_memos
+    %ul.weekly_memos__calender
+      %li= calender_date.to_s(:monthdate).gsub(/^0|\/0/, "^0" => "", "\/0" => "/")
+      %li.weekly_memos__calender__week= calender_date.strftime(%w(日 月 火 水 木 金 土)[calender_date.wday])
+    %ul.weekly_memos__memo
+      - memos["#{calender}"]&.each do |memo|
+        %li.weekly_memos__memo__line= memo.memo
   

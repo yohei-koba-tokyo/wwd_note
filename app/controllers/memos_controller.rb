@@ -14,18 +14,9 @@ class MemosController < ApplicationController
     redirect_to root_path
   end
 
-  def update
-    @todays_memos.update(update_memos_params)
-    redirect_to root_path
-  end
-
   private
   def memos_params
     params.require(:memos).map{|memo| memo.permit(:memo).merge(user_id: current_user.id)}
-  end
-
-  def update_memos_params
-    params.require(:memos).map{|memo| memo.permit(:id, :memo).merge(user_id: current_user.id)}
   end
 
   def todays_memos
