@@ -1,0 +1,25 @@
+.memo-form {
+  width: 100%;
+}
+
+.memo-form__inside {
+  border: solid 1px black;
+  padding: 10px;
+  margin: 10px;
+  &__line {
+    display:flex;
+  }
+}
+
+
+input#memos__memo {
+  display: block;
+  box-sizing: border-box;
+  border: none;
+  border-bottom: dashed 1px grey;
+  width: 100%;
+}
+
+#submit-btn {
+  margin: 0 10px;
+}
