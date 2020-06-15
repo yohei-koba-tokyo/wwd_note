@@ -1,0 +1,2 @@
+class NoteFeeling < ApplicationRecord
+end

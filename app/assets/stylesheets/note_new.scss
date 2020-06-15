@@ -1,0 +1,19 @@
+
+.note_new {
+  display: flex;
+  &__icon {
+    width: 110px;
+    text-align: center;
+  }
+  &__memo {
+    width: calc(100% - 110px);
+    select#note_memo_id {
+      height: 4rem;
+      margin: 13px;
+    }
+  }
+}
+
+.note_new, .note_new_1, .note_new_2, .note_new_3, .note_new_4 {
+  margin: 10px;
+}

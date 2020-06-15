@@ -1,0 +1,43 @@
+=form_with(model: @note, local: true, class:"note-form") do |form|
+  .note_new
+    .note_new__icon
+      %span.yellowline.smallfont 今週のベスト
+      %br/
+      %span.yellowline.smallfont できたこと
+      %br/
+      %p.fas.fa-crown.fa-2x{style: "color: gold"}
+    .note_new__memo
+      %p.smallfont この一週間でアナタが書いた「できたこと」の中から、「一番いい！」というものを直感で1つ選んでください。
+      = form.collection_select :memo_id, @memos, :id, :memo, selected: @memo[:id], prompt: "できたこと選択"
+  .note_new_1
+    .note_new__what
+      %p.smallfont
+        ①具体的に、何があったの？
+        %span.verrysmall 記憶をたどって、「いつ」「どこで」「だれと・だれに」「なにを」「どうやって」を書いてください。
+      = form.text_field :what, placeholder: "what"
+  .note_new_2
+    .note_new__why
+      %p.smallfont
+        ②なぜそれができたの？それっと本当にできたかな？
+        %span.verrysmall 「これってなんでできたんだろう？」「そもそも、なぜやることになったの？」「その目的から見ると、できたといえる？」を自分に問いかけてみて。
+      = form.text_field :why, placeholder: "why"
+  .note_new_3
+    .note_new__feeling
+      %p.smallfont 
+        ③いま、素直にどう感じてる？
+        %span.verrysmall あてはまるものを選択して、気持ちを書いてください。複数選択可。
+    = form.ch
+    = form.text_field :feeling_detail, placeholder: "why"
+  .note_new_4
+    .note_new__challenge
+      %p.smallfont
+        ④明日からはどんな工夫をしてみる？
+        %span.verrysmall まずは、すぐ明日からできるカンタンなことを書いてください。
+
+
+
+
+
+-# .note-new
+-#   -@memos.each do |memo|
+-#     =memo.memo

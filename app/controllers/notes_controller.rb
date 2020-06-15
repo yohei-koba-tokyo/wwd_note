@@ -1,0 +1,11 @@
+class NotesController < ApplicationController
+
+  def new
+    user = current_user
+    @memo = Memo.find(params[:format])
+    @memos = user.memos.reverse
+    @note = Note.new
+
+  end
+
+end
