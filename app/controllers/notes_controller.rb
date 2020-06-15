@@ -5,7 +5,7 @@ class NotesController < ApplicationController
     @memo = Memo.find(params[:format])
     @memos = user.memos.reverse
     @note = Note.new
-
+    @feelings = Feeling.all
   end
 
 end

@@ -1,12 +1,17 @@
 
+form.note-form {
+  padding:5px;
+}
 .note_new {
   display: flex;
+  background-color: rgb(255, 252, 235);
   &__icon {
     width: 110px;
     text-align: center;
   }
   &__memo {
     width: calc(100% - 110px);
+    padding-top: 12px;
     select#note_memo_id {
       height: 4rem;
       margin: 13px;
@@ -16,4 +21,16 @@
 
 .note_new, .note_new_1, .note_new_2, .note_new_3, .note_new_4 {
   margin: 10px;
+}
+
+textarea#note_what, textarea#note_why, textarea#note_feeling_detail, textarea#note_challenge {
+  width: 100%;
+  min-height: 5rem;
+}
+
+.note_new__feeling__pics {
+  margin: 10px;
+  img.feeling_pic {
+    margin: 0 10px;
+  }
 }

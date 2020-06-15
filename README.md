@@ -81,7 +81,7 @@
 - has_many :comments, dependent: :destroy
 - has_many :likes, dependent: :destroy
 - has_many :note_feelings
-- hasmany :feelings, through: :note_feelings
+- has_many :feelings, through: :note_feelings
 
 
 ### NoteFeeling table

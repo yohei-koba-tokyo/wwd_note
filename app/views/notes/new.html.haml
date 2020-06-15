@@ -3,7 +3,7 @@
     .note_new__icon
       %span.yellowline.smallfont 今週のベスト
       %br/
-      %span.yellowline.smallfont できたこと
+      %span.yellowline できたこと
       %br/
       %p.fas.fa-crown.fa-2x{style: "color: gold"}
     .note_new__memo
@@ -14,25 +14,30 @@
       %p.smallfont
         ①具体的に、何があったの？
         %span.verrysmall 記憶をたどって、「いつ」「どこで」「だれと・だれに」「なにを」「どうやって」を書いてください。
-      = form.text_field :what, placeholder: "what"
+      = form.text_area :what, placeholder: "what"
   .note_new_2
     .note_new__why
       %p.smallfont
         ②なぜそれができたの？それっと本当にできたかな？
         %span.verrysmall 「これってなんでできたんだろう？」「そもそも、なぜやることになったの？」「その目的から見ると、できたといえる？」を自分に問いかけてみて。
-      = form.text_field :why, placeholder: "why"
+      = form.text_area :why, placeholder: "why"
   .note_new_3
     .note_new__feeling
       %p.smallfont 
         ③いま、素直にどう感じてる？
         %span.verrysmall あてはまるものを選択して、気持ちを書いてください。複数選択可。
-    = form.ch
-    = form.text_field :feeling_detail, placeholder: "why"
+      .note_new__feeling__pics
+        -@feelings.each do |feeling|
+          %img(src="#{feeling.image}" alt="#{feeling.feel}" height="40" class="feeling_pic" id="#{feeling.feel}")
+      
+      = form.text_area :feeling_detail, placeholder: "feeling"
+
   .note_new_4
     .note_new__challenge
       %p.smallfont
         ④明日からはどんな工夫をしてみる？
         %span.verrysmall まずは、すぐ明日からできるカンタンなことを書いてください。
+      =form.text_area :challenge, placeholder: "challenge!"
 
 
 
