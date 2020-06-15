@@ -26,12 +26,14 @@
       %p.smallfont 
         ③いま、素直にどう感じてる？
         %span.verrysmall あてはまるものを選択して、気持ちを書いてください。複数選択可。
-      .note_new__feeling__pics
-        -@feelings.each do |feeling|
-          %img(src="#{feeling.image}" alt="#{feeling.feel}" height="40" class="feeling_pic" id="#{feeling.feel}")
-      
-      = form.text_area :feeling_detail, placeholder: "feeling"
 
+      .note_new__feeling__box
+        = form.collection_check_boxes(:feelings, Feeling.all, :id, :feel) do |b|
+          .note_new__feeling__box__inside
+            = b.check_box + b.text
+            %label(for="note_feelings_#{b.text+15}")
+              %img(src="#{@feelings[b.text].image}" height="35" class="feeling_pic")
+      = form.text_area :feeling_detail, placeholder: "feeling"
   .note_new_4
     .note_new__challenge
       %p.smallfont

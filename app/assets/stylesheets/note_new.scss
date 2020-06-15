@@ -8,6 +8,9 @@ form.note-form {
   &__icon {
     width: 110px;
     text-align: center;
+    p.fas.fa-crown {
+      line-height: 70px;
+    }
   }
   &__memo {
     width: calc(100% - 110px);
@@ -28,9 +31,17 @@ textarea#note_what, textarea#note_why, textarea#note_feeling_detail, textarea#no
   min-height: 5rem;
 }
 
-.note_new__feeling__pics {
-  margin: 10px;
-  img.feeling_pic {
-    margin: 0 10px;
-  }
+.note_new__feeling__box {
+  width: 100%;
+  display: flex;
+}
+img.feeling_pic {
+  filter:grayscale(100%);
+  margin-right: 30px;
+  cursor: pointer;
+}
+input[type="checkbox"]:checked+label {
+    img.feeling_pic {
+      filter: grayscale(0%);
+    }
 }
