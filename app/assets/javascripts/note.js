@@ -46,11 +46,11 @@ window.onload = function() {
   feeling.addEventListener('keyup', function () {
     var count = this.value.length;
     feelingCounter.innerHTML = counter(count);
-    count <= 255 ? whyCounter.classList.remove('red_alert') : whyCounter.classList.add('red_alert')
+    count <= 255 ? feelingCounter.classList.remove('red_alert') : feelingCounter.classList.add('red_alert')
   })
   challenge.addEventListener('keyup', function () {
     var count = this.value.length;
     challengeCounter.innerHTML = counter(count);
-    count <= 255 ? whyCounter.classList.remove('red_alert') : whyCounter.classList.add('red_alert')
+    count <= 255 ? challengeCounter.classList.remove('red_alert') : challengeCounter.classList.add('red_alert')
   })
 }

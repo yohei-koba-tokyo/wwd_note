@@ -2,6 +2,17 @@
 form.note-form {
   padding:5px;
 }
+.back_button {
+  text-align: right;
+  margin-right: 15px;
+  i.fas.fa-undo-alt {
+    color: red;
+  }
+  a.back-again {
+    font-size: 1.1rem;
+  }
+  margin-top: -30px;
+}
 .note_new {
   display: flex;
   background-color: rgb(255, 252, 235);
@@ -14,10 +25,12 @@ form.note-form {
   }
   &__memo {
     width: calc(100% - 110px);
-    padding-top: 12px;
-    select#note_memo_id {
-      height: 4rem;
-      margin: 13px;
+    height: 110px;
+    display: table;
+    &__title {
+      display: table-cell;
+      vertical-align: middle;
+      text-align: center;
     }
   }
 }
@@ -28,7 +41,7 @@ form.note-form {
 
 textarea#note_what, textarea#note_why, textarea#note_feeling_detail, textarea#note_challenge {
   width: 100%;
-  min-height: 5rem;
+  min-height: 7rem;
 }
 
 .note_new__feeling__box {
