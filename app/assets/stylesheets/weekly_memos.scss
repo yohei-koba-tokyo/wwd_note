@@ -23,6 +23,16 @@
     width: 100%;
     &__line {
       border-bottom: dashed 1px grey;
+      display: flex;
+      justify-content: space-between;
+    }
+    &__line:hover {
+      background-color: lemonchiffon;
     }
   }
+}
+
+i.fas.fa-crown {
+  color: goldenrod;
+  line-height: 22px;
 }

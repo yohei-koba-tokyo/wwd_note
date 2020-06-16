@@ -1,6 +1,6 @@
 # DB creation
 
-![erd](https://user-images.githubusercontent.com/60637308/83866540-e9d67100-a762-11ea-9aeb-e52f476dc7e5.png)
+![erd](https://user-images.githubusercontent.com/60637308/84620838-fe112f80-af13-11ea-8cb7-a050e232598c.png)
 
 ### User table
 
@@ -71,7 +71,6 @@
 |memo_id|integer|foreign_key: true, null:false|
 |what|string||
 |why|string||
-|feeling|integer||
 |feeling_detail|string||
 |challenge|string||
 
@@ -81,6 +80,29 @@
 - belongs_to :memo
 - has_many :comments, dependent: :destroy
 - has_many :likes, dependent: :destroy
+- has_many :note_feelings
+- has_many :feelings, through: :note_feelings
+
+
+### NoteFeeling table
+|Column|Type|Options|
+|------|----|-------|
+|note_id|integer|foreign_key: true, null:false|
+|feeling_id|integer|foreign_key: true, null:false|
+
+#### - Association -
+- belongs_to :note
+- belongs_to :feeling
+
+### Feeling table
+|Column|Type|Options|
+|------|----|-------|
+|feel|integer||
+|image|string||
+
+#### - Association -
+- has_many :note_feelings
+- has_many :notes, throug: :note_feelings
 
 ### Tutor table
 

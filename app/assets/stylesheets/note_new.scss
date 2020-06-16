@@ -1,0 +1,71 @@
+
+form.note-form {
+  padding:5px;
+}
+.back_button {
+  text-align: right;
+  margin-right: 15px;
+  i.fas.fa-undo-alt, i.fas.fa-exchange-alt {
+    color: red;
+  }
+  a.back-again {
+    font-size: 1.1rem;
+  }
+  margin-top: -30px;
+}
+.note_new {
+  display: flex;
+  background-color: rgb(255, 252, 235);
+  &__icon {
+    width: 110px;
+    text-align: center;
+    p.fas.fa-crown {
+      line-height: 70px;
+    }
+  }
+  &__memo {
+    width: calc(100% - 120px);
+    height: 110px;
+    display: table;
+    &__title {
+      display: table-cell;
+      vertical-align: middle;
+      text-align: center;
+    }
+  }
+}
+
+.note_new, .note_new_1, .note_new_2, .note_new_3, .note_new_4 {
+  margin: 10px;
+}
+
+textarea#note_what, textarea#note_why, textarea#note_feeling_detail, textarea#note_challenge {
+  width: 100%;
+  min-height: 7rem;
+}
+
+.note_new__feeling__box {
+  width: 100%;
+  display: flex;
+}
+img.feeling_pic {
+  filter:grayscale(100%);
+  margin-right: 30px;
+  cursor: pointer;
+}
+input[type="checkbox"]:checked+label {
+    img.feeling_pic {
+      filter: grayscale(0%);
+    }
+}
+
+.red_alert {
+  color: red;
+  font-weight: bold;
+}
+
+p.counter_what, p.counter_why, p.counter_feeling, p.counter_challenge {
+  font-size:9px;
+  text-align: right;
+}
+
