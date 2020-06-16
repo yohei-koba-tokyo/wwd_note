@@ -45,3 +45,14 @@ input[type="checkbox"]:checked+label {
       filter: grayscale(0%);
     }
 }
+
+.red_alert {
+  color: red;
+  font-weight: bold;
+}
+
+p.counter_what, p.counter_why, p.counter_feeling, p.counter_challenge {
+  font-size:9px;
+  text-align: right;
+}
+

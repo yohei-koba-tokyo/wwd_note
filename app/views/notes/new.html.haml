@@ -15,12 +15,14 @@
         ①具体的に、何があったの？
         %span.verrysmall 記憶をたどって、「いつ」「どこで」「だれと・だれに」「なにを」「どうやって」を書いてください。
       = form.text_area :what, placeholder: "what"
+      %p.counter_what="0/255"
   .note_new_2
     .note_new__why
       %p.smallfont
         ②なぜそれができたの？それっと本当にできたかな？
         %span.verrysmall 「これってなんでできたんだろう？」「そもそも、なぜやることになったの？」「その目的から見ると、できたといえる？」を自分に問いかけてみて。
       = form.text_area :why, placeholder: "why"
+      %p.counter_why="0/255"
   .note_new_3
     .note_new__feeling
       %p.smallfont 
@@ -34,17 +36,12 @@
             %label(for="note_feelings_#{b.text+15}")
               %img(src="#{@feelings[b.text].image}" height="35" class="feeling_pic")
       = form.text_area :feeling_detail, placeholder: "feeling"
+      %p.counter_feeling="0/255"
   .note_new_4
     .note_new__challenge
       %p.smallfont
         ④明日からはどんな工夫をしてみる？
         %span.verrysmall まずは、すぐ明日からできるカンタンなことを書いてください。
       =form.text_area :challenge, placeholder: "challenge!"
-
-
-
-
-
--# .note-new
--#   -@memos.each do |memo|
--#     =memo.memo
+      %p.counter_challenge="0/255"
+  =form.submit "保存する", class:"submit-btn"

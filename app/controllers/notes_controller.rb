@@ -8,4 +8,9 @@ class NotesController < ApplicationController
     @feelings = Feeling.all
   end
 
+  def create
+    @note = Note.new
+    
+  end
+
 end
