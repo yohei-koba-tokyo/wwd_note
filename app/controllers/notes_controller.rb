@@ -17,6 +17,27 @@ class NotesController < ApplicationController
     end
   end
 
+  def edit
+    user = current_user
+    @memos = user.memos.reverse
+    @note = Note.find(params[:id])
+    @memo = @note.memo
+    @feelings = Feeling.all
+  end
+
+  def update
+    @note = Note.find(params[:id])
+    if @note.update(note_params)
+      redirect_to root_path
+    else
+      redirect_to root_path
+    end
+  end
+
+  # def destroy
+  #   @note = Note.find(params[:id])
+  # end
+
   private
 
   def note_params

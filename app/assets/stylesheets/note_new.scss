@@ -5,7 +5,7 @@ form.note-form {
 .back_button {
   text-align: right;
   margin-right: 15px;
-  i.fas.fa-undo-alt {
+  i.fas.fa-undo-alt, i.fas.fa-exchange-alt {
     color: red;
   }
   a.back-again {
@@ -24,7 +24,7 @@ form.note-form {
     }
   }
   &__memo {
-    width: calc(100% - 110px);
+    width: calc(100% - 120px);
     height: 110px;
     display: table;
     &__title {

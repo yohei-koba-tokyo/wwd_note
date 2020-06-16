@@ -17,7 +17,13 @@
         %li.weekly_memos__calendar__week= calendar_date.strftime(%w(日 月 火 水 木 金 土)[calendar_date.wday])  
       %ul.weekly_memos__memo
         - memos["#{calendar}"]&.each do |memo|
-          %li.weekly_memos__memo__line
-            %p.smallfont= memo.memo
+          -if memo.note.present?
+            = link_to edit_note_path(memo.note) do
+              %li.weekly_memos__memo__line
+                %p.smallfont= memo.memo
+                %i.fas.fa-crown
+                  best!
+          -else
             = link_to new_note_path(memo) do
-              = icon('fas', 'crown')
+              %li.weekly_memos__memo__line
+                %p.smallfont= memo.memo

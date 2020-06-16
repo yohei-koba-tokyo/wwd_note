@@ -26,9 +26,13 @@
       display: flex;
       justify-content: space-between;
     }
+    &__line:hover {
+      background-color: lemonchiffon;
+    }
   }
 }
 
 i.fas.fa-crown {
-  color: grey;
+  color: goldenrod;
+  line-height: 22px;
 }

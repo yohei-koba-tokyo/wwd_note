@@ -1,17 +1,6 @@
 
-
-
-
-
-
-
-
-
-
-
-
 window.onload = function() {
-
+  if (document.getElementById("note_what") != null) {
   function counter(count) {
     if (count <= 255) {
       var text = count + "/255"
@@ -53,4 +42,4 @@ window.onload = function() {
     challengeCounter.innerHTML = counter(count);
     count <= 255 ? challengeCounter.classList.remove('red_alert') : challengeCounter.classList.add('red_alert')
   })
-}
+}}

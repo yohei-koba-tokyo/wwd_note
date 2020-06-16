@@ -1,0 +1,57 @@
+=form_with(model: note, local: true, class:"note-form") do |form|
+  =form.hidden_field :memo_id, :value => memo.id
+  .note_new
+    .note_new__icon
+      %span.yellowline.smallfont 今週のベスト
+      %br/
+      %span.yellowline GoodJob
+      %br/
+      %p.fas.fa-crown.fa-2x{style: "color: gold"}
+    .note_new__memo 
+      - form.collection_select :memo_id, memos, :id, :memo, selected: memo[:id], prompt: "できたこと選択"
+      %h2.note_new__memo__title=memo.memo
+  .back_button.verysmall
+    =link_to root_path, class:"back-again" do
+      %i.fas.fa-undo-alt
+      =request.path.include?("/notes/new") ? "今週のベストを選び治す" : "一覧に戻る　"
+    -if request.path.include?("/edit")
+      =link_to note_path, method: :delete, class:"back-again" do
+        %i.fas.fa-exchange-alt
+        今週のベストを選び直す
+  %br/
+  .note_new_1
+    .note_new__what
+      %p.smallfont
+        ①具体的に、何があったの？
+        %span.verysmall 記憶をたどって、「いつ」「どこで」「だれと・だれに」「なにを」「どうやって」を書いてください。
+      = form.text_area :what, placeholder: "what"
+      %p.counter_what="※255文字以内で入力"
+  .note_new_2
+    .note_new__why
+      %p.smallfont
+        ②なぜそれができたの？それっと本当にできたかな？
+        %span.verysmall 「これってなんでできたんだろう？」「そもそも、なぜやることになったの？」「その目的から見ると、できたといえる？」を自分に問いかけてみて。
+      = form.text_area :why, placeholder: "why"
+      %p.counter_why="※255文字以内で入力"
+  .note_new_3
+    .note_new__feeling
+      %p.smallfont 
+        ③いま、素直にどう感じてる？
+        %span.verysmall あてはまるものを選択して、気持ちを書いてください。複数選択可。
+
+      .note_new__feeling__box
+        = form.collection_check_boxes(:feeling_ids, Feeling.all, :id, :feel, include_hidden: false) do |b|
+          .note_new__feeling__box__inside
+            = b.check_box + b.text
+            %label(for="note_feelings_#{b.text+15}")
+              %img(src="#{feelings[b.text].image}" height="35" class="feeling_pic")
+      = form.text_area :feeling_detail, placeholder: "feeling"
+      %p.counter_feeling="※255文字以内で入力"
+  .note_new_4
+    .note_new__challenge
+      %p.smallfont
+        ④明日からはどんな工夫をしてみる？
+        %span.verysmall まずは、すぐ明日からできるカンタンなことを書いてください。
+      =form.text_area :challenge, placeholder: "challenge"
+      %p.counter_challenge="※255文字以内で入力"
+  =form.submit "保存する", class:"submit-btn"
