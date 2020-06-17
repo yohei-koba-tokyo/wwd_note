@@ -43,7 +43,7 @@
         = form.collection_check_boxes(:feeling_ids, Feeling.all, :id, :feel, include_hidden: false) do |b|
           .note_new__feeling__box__inside
             = b.check_box + b.text
-            %label(for="note_feelings_#{b.text+15}")
+            %label(for="note_feeling_ids_#{b.text+15}")
               %img(src="#{feelings[b.text].image}" height="35" class="feeling_pic")
       = form.text_area :feeling_detail, placeholder: "feeling"
       %p.counter_feeling="※255文字以内で入力"
