@@ -39,9 +39,20 @@ document.addEventListener('DOMContentLoaded', () => {
   const app = new Vue({
     el: '#hello',
     data: {
-      message: "Can you say hello?"
+      memosIndex : 0
     },
-    components: { App }
+    components: { App },
+    methods: {
+      countUp: function() {
+        this.memosIndex --
+      },
+      countDown: function() {
+        this.memosIndex ++
+      }
+    },
+    computed: {
+
+    }
   })
 })
 //
