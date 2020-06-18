@@ -5,6 +5,7 @@ class MemosController < ApplicationController
   def index
     @users = User.all
     @memos = MemoCollection.new
+    @all_memos = current_user.memos if user_signed_in? 
     # @weekly_memos = current_user.get_weekly_memos(memos_index = 0) if user_signed_in?
   end
 
