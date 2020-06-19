@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
     created () {
       axios
         .get (
-          '/memos/search.json'
+          '/memos/pagenation.json'
         )
         .then(response =>{
         this.memos = response.data;
@@ -59,10 +59,15 @@ document.addEventListener('DOMContentLoaded', () => {
     },
     methods: {
       countUp: function() {
-        this.page --
+        this.page= Math.max(this.page- 1, 1);
       },
       countDown: function() {
-        this.page ++
+        this.page= Math.min(this.page+ 1, this.totalPage);
+      }
+    },
+    computed: {
+      filterMemos() {
+        return this.memos.slice((this.page - 1) * this.perPage, this.page * this.perPage);
       }
     }
   })

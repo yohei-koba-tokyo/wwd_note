@@ -1,9 +1,10 @@
 #pagenation
   .weekly_memos__button
     %button.button#prev-week{"@click" => "countDown"} prev
+    %small {{totalPage-page+1}} / {{totalPage}}
     %button.button#next-week{"@click" => "countUp"} next
 
-  .weekly_memos{"v-for" => "memo in memos", ":key" => "memo.created_at"}
+  .weekly_memos{"v-for" => "memo in filterMemos", ":key" => "memo.created_at"}
     %ul.weekly_memos__calendar
       %li
         {{ memo.date }}

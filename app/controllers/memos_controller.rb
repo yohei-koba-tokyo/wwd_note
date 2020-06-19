@@ -7,7 +7,7 @@ class MemosController < ApplicationController
     @memos = MemoCollection.new
   end
 
-  def search
+  def pagenation
     memos =current_user.memos.group_by {|i| i.created_at.to_date}.sort
     @memos = []
     (memos.first[0] .. (Date.today-1)).reverse_each do |date|

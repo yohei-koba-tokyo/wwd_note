@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root 'memos#index'
   resources :memos do
     collection do
-      get 'search'
+      get 'pagenation'
     end
   end
   resources :notes
