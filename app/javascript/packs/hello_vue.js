@@ -39,8 +39,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const app = new Vue({
     el: '#hello',
     data: {
-      memosIndex : 0,
-      memos: []
+      memos: [],
+      page : 1,
+      perPage: 7,
+      totalPage: 0,
+      count: 0
     },
     components: { App },
     created () {
@@ -50,15 +53,16 @@ document.addEventListener('DOMContentLoaded', () => {
         )
         .then(response =>{
         this.memos = response.data;
-        console.log(response.data)
+        this.count = response.data.length;
+        this.totalPage = Math.ceil(this.count / this.perPage);
       });
     },
     methods: {
       countUp: function() {
-        this.memosIndex --
+        this.page --
       },
       countDown: function() {
-        this.memosIndex ++
+        this.page ++
       }
     }
   })

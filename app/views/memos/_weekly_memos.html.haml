@@ -1,15 +1,7 @@
-
--memos_index = 0
--memos = current_user.get_weekly_memos(memos_index)
-
 #pagenation
   .weekly_memos__button
     %button.button#prev-week{"@click" => "countDown"} prev
     %button.button#next-week{"@click" => "countUp"} next
-    -# %button.button#test{"@click" => "getData"} test
-    {{ memosIndex }}
-    %br/
-
 
   .weekly_memos{"v-for" => "memo in memos", ":key" => "memo.created_at"}
     %ul.weekly_memos__calendar
