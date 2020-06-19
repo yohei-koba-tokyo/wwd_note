@@ -31,7 +31,7 @@
 //   <app></app>
 // </div>
 
-
+import axios from 'axios'
 import Vue from 'vue/dist/vue.esm'
 import App from '../app.vue'
 
@@ -39,19 +39,36 @@ document.addEventListener('DOMContentLoaded', () => {
   const app = new Vue({
     el: '#hello',
     data: {
-      memosIndex : 0
+      memos: [],
+      page : 1,
+      perPage: 7,
+      totalPage: 0,
+      count: 0
     },
     components: { App },
+    created () {
+      axios
+        .get (
+          '/memos/pagenation.json'
+        )
+        .then(response =>{
+        this.memos = response.data;
+        this.count = response.data.length;
+        this.totalPage = Math.ceil(this.count / this.perPage);
+      });
+    },
     methods: {
       countUp: function() {
-        this.memosIndex --
+        this.page= Math.max(this.page- 1, 1);
       },
       countDown: function() {
-        this.memosIndex ++
+        this.page= Math.min(this.page+ 1, this.totalPage);
       }
     },
     computed: {
-
+      filterMemos() {
+        return this.memos.slice((this.page - 1) * this.perPage, this.page * this.perPage);
+      }
     }
   })
 })

@@ -1,31 +1,31 @@
-
--memos_index = 0
--memos = current_user.get_weekly_memos(memos_index)
-
 #pagenation
   .weekly_memos__button
     %button.button#prev-week{"@click" => "countDown"} prev
+    %small {{totalPage-page+1}} / {{totalPage}}
     %button.button#next-week{"@click" => "countUp"} next
-    {{ memosIndex }}
 
-  - 7.times do |i|
-    - calendar_date = Time.current - (7 * memos_index + i + 1).day
-    - calendar = calendar_date.strftime("%m/%d(#{%w(日 月 火 水 木 金 土)[calendar_date.wday]})")
+  .weekly_memos{"v-for" => "memo in filterMemos", ":key" => "memo.created_at"}
+    %ul.weekly_memos__calendar
+      %li
+        {{ memo.date }}
+      %li.weekly_memos__calendar__week
+        {{ memo.week }}
+    %ul.weekly_memos__memo{"v-for" => "m in memo.memo", ":key" => "m.id"}
+      %li.weekly_memos__memo__line
+        %p.smallfont {{ m.memo }}
 
 
-    .weekly_memos
-      %ul.weekly_memos__calendar
-        %li= calendar_date.to_s(:monthdate).gsub(/^0|\/0/, "^0" => "", "\/0" => "/")
-        %li.weekly_memos__calendar__week= calendar_date.strftime(%w(日 月 火 水 木 金 土)[calendar_date.wday])  
-      %ul.weekly_memos__memo
-        - memos["#{calendar}"]&.each do |memo|
-          -if memo.note.present?
-            = link_to edit_note_path(memo.note) do
-              %li.weekly_memos__memo__line
-                %p.smallfont= memo.memo
-                %i.fas.fa-crown
-                  best!
-          -else
-            = link_to new_note_path(memo) do
-              %li.weekly_memos__memo__line
-                %p.smallfont= memo.memo
+
+
+
+      -# -if [m.id].note.present?
+      -#   = link_to edit_note_path(m.note) do
+      -#     %li.weekly_memos__memo__line
+      -#       %p.smallfont
+      -#         {{ m.memo }}
+      -#       %i.fas.fa-crown
+      -#         best!
+      -# -else
+      -#   = link_to new_note_path(m) do
+      -#     %li.weekly_memos__memo__line
+      -#       %p.smallfont= m.memo
