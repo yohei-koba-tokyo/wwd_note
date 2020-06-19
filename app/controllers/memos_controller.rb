@@ -5,8 +5,20 @@ class MemosController < ApplicationController
   def index
     @users = User.all
     @memos = MemoCollection.new
-    @all_memos = current_user.memos if user_signed_in? 
-    # @weekly_memos = current_user.get_weekly_memos(memos_index = 0) if user_signed_in?
+  end
+
+  def search
+    memos =current_user.memos.group_by {|i| i.created_at.to_date}.sort
+    @memos = []
+    (memos.first[0] .. (Date.today-1)).reverse_each do |date|
+      memo = memos.find{|ary| ary[0] == date}
+      memo.nil? ? memo = [] : memo = memo[1]
+      @memos << [date, memo]
+    end
+    respond_to do |format|
+      format.html
+      format.json
+    end
   end
 
   def create

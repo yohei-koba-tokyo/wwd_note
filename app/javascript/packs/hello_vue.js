@@ -31,7 +31,7 @@
 //   <app></app>
 // </div>
 
-
+import axios from 'axios'
 import Vue from 'vue/dist/vue.esm'
 import App from '../app.vue'
 
@@ -39,9 +39,20 @@ document.addEventListener('DOMContentLoaded', () => {
   const app = new Vue({
     el: '#hello',
     data: {
-      memosIndex : 0
+      memosIndex : 0,
+      memos: []
     },
     components: { App },
+    created () {
+      axios
+        .get (
+          '/memos/search.json'
+        )
+        .then(response =>{
+        this.memos = response.data;
+        console.log(response.data)
+      });
+    },
     methods: {
       countUp: function() {
         this.memosIndex --
@@ -49,9 +60,6 @@ document.addEventListener('DOMContentLoaded', () => {
       countDown: function() {
         this.memosIndex ++
       }
-    },
-    computed: {
-
     }
   })
 })
