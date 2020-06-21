@@ -1,18 +1,23 @@
 #pagenation
   .weekly_memos__button
-    %button.button#prev-week{"@click" => "countDown"} prev
-    %small {{totalPage-page+1}} / {{totalPage}}
-    %button.button#next-week{"@click" => "countUp"} next
+    %button.button#next-week{"@click" => "countUp", "v-if" => "page != 1"} 次の週
+    %button.button.hidden{"v-else" => ""} 次の週
+    %small {{page}} / {{totalPage}}
+    %button.button#prev-week{"@click" => "countDown", "v-if" => "page != totalPage"} 過去の週
+    %button.button.hidden{"v-else" => ""} 過去の週
 
-  .weekly_memos{"v-for" => "memo in filterMemos", ":key" => "memo.created_at"}
+  .weekly_memos{"v-for" => "memo in filterMemos", ":key" => "memo.date"}
     %ul.weekly_memos__calendar
       %li
         {{ memo.date }}
       %li.weekly_memos__calendar__week
         {{ memo.week }}
-    %ul.weekly_memos__memo{"v-for" => "m in memo.memo", ":key" => "m.id"}
-      %li.weekly_memos__memo__line
-        %p.smallfont {{ m.memo }}
+    %ul.weekly_memos__memo
+      %li.weekly_memos__memo__line{"v-for" => "m in memo.memo", ":key" => "m[0].id"}
+        %p.smallfont {{ m[0].memo }}
+        %p.smallfont{"v-if" => "m[1]"}
+          %a.fas.fa-crown{ "@click" => "createNoteUrl(m[1].id)", "v-bind:href" => "noteUrl" }
+            best!
 
 
 

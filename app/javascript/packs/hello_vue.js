@@ -43,7 +43,8 @@ document.addEventListener('DOMContentLoaded', () => {
       page : 1,
       perPage: 7,
       totalPage: 0,
-      count: 0
+      count: 0,
+      noteUrl: ""
     },
     components: { App },
     created () {
@@ -55,6 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
         this.memos = response.data;
         this.count = response.data.length;
         this.totalPage = Math.ceil(this.count / this.perPage);
+        console.log(response.data)
       });
     },
     methods: {
@@ -63,6 +65,9 @@ document.addEventListener('DOMContentLoaded', () => {
       },
       countDown: function() {
         this.page= Math.min(this.page+ 1, this.totalPage);
+      },
+      createNoteUrl: function(id) {
+        this.noteUrl= "notes/" + id + "/edit"
       }
     },
     computed: {

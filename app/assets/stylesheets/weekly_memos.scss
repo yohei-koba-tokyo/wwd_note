@@ -25,6 +25,8 @@
       border-bottom: dashed 1px grey;
       display: flex;
       justify-content: space-between;
+      line-height: 22px;
+      min-height: 20px;
     }
     &__line:hover {
       background-color: lemonchiffon;
@@ -32,7 +34,11 @@
   }
 }
 
-i.fas.fa-crown {
+a.fas.fa-crown {
   color: goldenrod;
   line-height: 22px;
+}
+button.hidden {
+  color: grey;
+  background-color: silver;
 }
