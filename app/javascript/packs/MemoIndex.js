@@ -37,16 +37,19 @@ import App from '../app.vue'
 
 document.addEventListener('DOMContentLoaded', () => {
   const app = new Vue({
-    el: '#hello',
+    el: '#memoindex',
     data: {
       memos: [],
       page : 1,
       perPage: 7,
       totalPage: 0,
-      count: 0
+      count: 0,
+      hoverFlag: false,
+      hoverIndex: null,
+      noteUrl: ""
     },
     components: { App },
-    created () {
+    mounted () {
       axios
         .get (
           '/memos/pagenation.json'
@@ -55,6 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
         this.memos = response.data;
         this.count = response.data.length;
         this.totalPage = Math.ceil(this.count / this.perPage);
+        // console.log(response.data)
       });
     },
     methods: {
@@ -63,6 +67,19 @@ document.addEventListener('DOMContentLoaded', () => {
       },
       countDown: function() {
         this.page= Math.min(this.page+ 1, this.totalPage);
+      },
+      createNoteNewUrl: function(id) {
+        this.noteUrl= "notes/new." + id
+      },
+      createNoteEditUrl: function(id) {
+        this.noteUrl= "notes/" + id + "/edit"
+      },
+      mouseOverAction: function(id) {
+        this.hoverFlag = true
+        this.hoverIndex = id
+      },
+      mouseLeaveAction: function() {
+        this.hoverFlag= false
       }
     },
     computed: {

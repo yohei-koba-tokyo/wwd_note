@@ -1,7 +1,7 @@
 
 - if user_signed_in?
   = current_user.name
-  =link_to "ログアウト", destroy_user_session_path, class:"button",method: :DELETE
+  =link_to "ログアウト", destroy_user_session_path, class:"button",method: :DELETE, data: {"turbolinks" => false}
   - if @todays_memos.present?
     %p 編集
     = render partial: "form", locals: { memos: @todays_memos }
@@ -12,4 +12,4 @@
   - @users.each do |user|
     = render "relationships/follow_button", user: user
 -else
-  =link_to "login", user_session_path, class:"button"
+  =link_to "login", user_session_path, class:"button", data: {"turbolinks" => false}
