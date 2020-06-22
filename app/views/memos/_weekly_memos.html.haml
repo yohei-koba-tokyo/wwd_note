@@ -1,10 +1,10 @@
 #pagenation
   .weekly_memos__button
-    %button.button#next-week{"@click" => "countUp", "v-if" => "page != 1"} 次の週
-    %button.button.hidden{"v-else" => ""} 次の週
+    %button.button#next-week{"@click" => "countUp", "v-if" => "page != 1"} prev
+    %button.button.hidden{"v-else" => ""} prev
     %small {{page}} / {{totalPage}}
-    %button.button#prev-week{"@click" => "countDown", "v-if" => "page != totalPage"} 過去の週
-    %button.button.hidden{"v-else" => ""} 過去の週
+    %button.button#prev-week{"@click" => "countDown", "v-if" => "page != totalPage"} next
+    %button.button.hidden{"v-else" => ""} next
 
   .weekly_memos{"v-for" => "memo in filterMemos", ":key" => "memo.date"}
     %ul.weekly_memos__calendar
@@ -13,11 +13,16 @@
       %li.weekly_memos__calendar__week
         {{ memo.week }}
     %ul.weekly_memos__memo
-      %li.weekly_memos__memo__line{"v-for" => "m in memo.memo", ":key" => "m[0].id"}
+      %li.weekly_memos__memo__line{"v-for" => "m in memo.memo", ":key" => "m[0].id", "@mouseover" => "mouseOverAction(m[0].id)", "@mouseleave" => "mouseLeaveAction()"}
         %p.smallfont {{ m[0].memo }}
-        %p.smallfont{"v-if" => "m[1]"}
-          %a.fas.fa-crown{ "@click" => "createNoteUrl(m[1].id)", "v-bind:href" => "noteUrl" }
-            best!
+        .weekly_memos__memo__line__rightbtn
+          %a.weekly_memos__memo__line__rightbtn__hover{"v-if" => "hoverFlag && m[0].id === hoverIndex && m[1] === null", "@click" => "createNoteNewUrl(m[0].id)", "v-bind:href" => "noteUrl" }
+            %span.smallfont Best! に選ぶ
+            %p.fas.fa-check
+          %a.weekly_memos__memo__line__rightbtn__hover{"v-if" => "hoverFlag && m[0].id === hoverIndex && m[1]", "@click" => "createNoteEditUrl(m[1].id)", "v-bind:href" => "noteUrl" }
+            %span.smallfont Best!ノートを見る
+          %p.smallfont{"v-if" => "m[1]"}
+            %a.fas.fa-crown{ "@click" => "createNoteEditUrl(m[1].id)", "v-bind:href" => "noteUrl", "data-turbolinks" => "false" }
 
 
 

@@ -26,7 +26,13 @@
       display: flex;
       justify-content: space-between;
       line-height: 22px;
-      min-height: 20px;
+      height: 22px;
+      &__rightbtn {
+        display: flex;
+        a.weekly_memos__memo__line__rightbtn__hover {
+          color: skyblue;
+        }
+      }
     }
     &__line:hover {
       background-color: lemonchiffon;

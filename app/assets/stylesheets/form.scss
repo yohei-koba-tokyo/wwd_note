@@ -17,7 +17,7 @@ input#memos__memo {
   box-sizing: border-box;
   border: none;
   border-bottom: dashed 1px grey;
-  width: 100%;
+  width: calc(100% - 0px);
 }
 
 .submit-btn {

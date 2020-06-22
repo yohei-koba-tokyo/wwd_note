@@ -11,11 +11,11 @@
       - form.collection_select :memo_id, memos, :id, :memo, selected: memo[:id], prompt: "できたこと選択"
       %h2.note_new__memo__title=memo.memo
   .back_button.verysmall
-    =link_to root_path, class:"back-again" do
+    =link_to :back, class:"back-again", data: {"turbolinks" => false} do
       %i.fas.fa-undo-alt
       =request.path.include?("/notes/new") ? "今週のベストを選び治す" : "一覧に戻る　"
     -if request.path.include?("/edit")
-      =link_to note_path, method: :delete, class:"back-again" do
+      =link_to note_path, method: :delete, class:"back-again", data: {"turbolinks" => false} do
         %i.fas.fa-exchange-alt
         今週のベストを選び直す
   %br/
