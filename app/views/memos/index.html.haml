@@ -9,7 +9,16 @@
     %P 新規
     = render partial: "form", locals: { memos: @memos }
   = render partial: "weekly_memos"
+
+
   - @users.each do |user|
     = render "relationships/follow_button", user: user
+
+  .memos__followers{"v-for" => "user in users", ":key" => "user.id"}
+    {{ user.name }}
+    %img{":src" => "user.image.url"}
+
+
+
 -else
   =link_to "login", user_session_path, class:"button", data: {"turbolinks" => false}
