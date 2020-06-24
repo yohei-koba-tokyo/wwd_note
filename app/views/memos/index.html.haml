@@ -16,7 +16,7 @@
 
   .memos__followers{"v-for" => "user in users", ":key" => "user.id"}
     {{ user.name }}
-    {{user.image}}
+    %img{":src" => "user.image.url"}
 
 
 
