@@ -46,7 +46,8 @@ document.addEventListener('DOMContentLoaded', () => {
       count: 0,
       hoverFlag: false,
       hoverIndex: null,
-      noteUrl: ""
+      noteUrl: "",
+      users: []
     },
     components: { App },
     mounted () {
@@ -58,7 +59,13 @@ document.addEventListener('DOMContentLoaded', () => {
         this.memos = response.data;
         this.count = response.data.length;
         this.totalPage = Math.ceil(this.count / this.perPage);
-        // console.log(response.data)
+      });
+      axios
+        .get (
+          '/api/relationships'
+        )
+        .then(response =>{
+          this.users = response.data;
       });
     },
     methods: {
