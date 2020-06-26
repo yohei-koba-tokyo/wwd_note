@@ -37,7 +37,7 @@ import App from '../app.vue'
 
 document.addEventListener('DOMContentLoaded', () => {
   const app = new Vue({
-    el: '#memoindex',
+    el: '#memo',
     data: {
       memos: [],
       page : 1,

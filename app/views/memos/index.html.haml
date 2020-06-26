@@ -1,23 +1,18 @@
-
-- if user_signed_in?
-  = current_user.name
-  =link_to "ログアウト", destroy_user_session_path, class:"button",method: :DELETE, data: {"turbolinks" => false}
-  - if @todays_memos.present?
-    %p 編集
-    = render partial: "form", locals: { memos: @todays_memos }
-  - else
-    %P 新規
-    = render partial: "form", locals: { memos: @memos }
-  = render partial: "weekly_memos"
-
-  .memos__followers{"v-for" => "user in users", ":key" => "user.id"}
-    %img{":src" => "user.image.url", "width" => "40", "height" => "40"}
-    {{ user.name }}
-    %button.button.following{"v-if" => "Boolean(user.follow_id)", "@click" => "unfollowUser(user.follow_id)", "data-turbolinks" => "false"}フォロー
-    %button.button.following.mouseover{"v-else" => "", "@click" => "followUser(user.id, user.own_id)", "data-turbolinks" => "false", "@mouseover" => "mouseOverUser(user.id)", "@mouseleave" => "mouseLeaveUser"} {{hoverUserFlag && user.id === hoverUserIndex ? "フォロー解除" : "フォロー中"}}
-
-
-
-
--else
-  =link_to "login", user_session_path, class:"button", data: {"turbolinks" => false}
+#memo
+  - if user_signed_in?
+    = current_user.name
+    =link_to "ログアウト", destroy_user_session_path, class:"button",method: :DELETE, data: {"turbolinks" => false}
+    - if @todays_memos.present?
+      %p 編集
+      = render partial: "form", locals: { memos: @todays_memos }
+    - else
+      %P 新規
+      = render partial: "form", locals: { memos: @memos }
+    = render partial: "weekly_memos"
+    .memos__followers{"v-for" => "user in users", ":key" => "user.id"}
+      %img{":src" => "user.image.url", "width" => "40", "height" => "40"}
+      {{ user.name }}
+      %button.button.following{"v-if" => "Boolean(user.follow_id)", "@click" => "unfollowUser(user.follow_id)", "data-turbolinks" => "false"}フォロー
+      %button.button.following.mouseover{"v-else" => "", "@click" => "followUser(user.id, user.own_id)", "data-turbolinks" => "false", "@mouseover" => "mouseOverUser(user.id)", "@mouseleave" => "mouseLeaveUser"} {{hoverUserFlag && user.id === hoverUserIndex ? "フォロー解除" : "フォロー中"}}
+  -else
+    =link_to "login", user_session_path, class:"button", data: {"turbolinks" => false}
