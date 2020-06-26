@@ -10,13 +10,12 @@
     = render partial: "form", locals: { memos: @memos }
   = render partial: "weekly_memos"
 
-
-  - @users.each do |user|
-    = render "relationships/follow_button", user: user
-
   .memos__followers{"v-for" => "user in users", ":key" => "user.id"}
+    %img{":src" => "user.image.url", "width" => "40", "height" => "40"}
     {{ user.name }}
-    %img{":src" => "user.image.url"}
+    %button.button.following{"v-if" => "Boolean(user.follow_id)", "@click" => "unfollowUser(user.follow_id)", "data-turbolinks" => "false"}フォロー
+    %button.button.following.mouseover{"v-else" => "", "@click" => "followUser(user.id, user.own_id)", "data-turbolinks" => "false", "@mouseover" => "mouseOverUser(user.id)", "@mouseleave" => "mouseLeaveUser"} {{hoverUserFlag && user.id === hoverUserIndex ? "フォロー解除" : "フォロー中"}}
+
 
 
 

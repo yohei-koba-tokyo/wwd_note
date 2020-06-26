@@ -46,26 +46,26 @@ document.addEventListener('DOMContentLoaded', () => {
       count: 0,
       hoverFlag: false,
       hoverIndex: null,
+      hoverUserFlag: false,
+      hoverUserIndex: null,
       noteUrl: "",
-      users: []
+      users: [],
     },
     components: { App },
     mounted () {
-      axios
-        .get (
-          '/memos/pagenation.json'
-        )
-        .then(response =>{
+      axios.get (
+        '/memos/pagenation.json'
+      )
+      .then(response =>{
         this.memos = response.data;
         this.count = response.data.length;
         this.totalPage = Math.ceil(this.count / this.perPage);
       });
-      axios
-        .get (
-          '/api/relationships'
-        )
-        .then(response =>{
-          this.users = response.data;
+      axios.get (
+        '/api/relationships'
+      )
+      .then(response =>{
+        this.users = response.data;
       });
     },
     methods: {
@@ -87,6 +87,38 @@ document.addEventListener('DOMContentLoaded', () => {
       },
       mouseLeaveAction: function() {
         this.hoverFlag= false
+      },
+      mouseOverUser: function(id) {
+        this.hoverUserFlag = true
+        this.hoverUserIndex = id 
+      },
+      mouseLeaveUser: function() {
+        this.hoverUserFlag = false
+      },
+      followUser: function(id, own_id) {
+        axios.post (
+          '/api/relationships',
+          {
+            user_id: own_id,
+            follow_id: id
+          }
+        )
+        .then(response => {
+          let pick = this.users.find(user => user.id == response.data.id)
+          pick.follow_id = response.data.follow_id
+        })
+        .catch(error => {
+          console.log(error);
+        });
+      },
+      unfollowUser: function(id) {
+        axios.delete (
+          '/api/relationships/' + id,
+        )
+        .then(response => {
+          let pick = this.users.find(user => user.id == response.data.id)
+          pick.follow_id = null
+        })
       }
     },
     computed: {
