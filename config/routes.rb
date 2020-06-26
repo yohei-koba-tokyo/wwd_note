@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   resources :notes, except: [:index, :show]
   
   namespace :api do
-    resources :relationships, only: [:index], defaults: { format: 'json' }
+    resources :relationships, only: [:index, :create, :destroy], defaults: { format: 'json' }
   end
 
   resources :relationships, only: [:create, :destroy]
