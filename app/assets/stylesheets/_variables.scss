@@ -10,3 +10,9 @@
   font-size: 1.2rem;
   color: rgb(255, 110, 134);
 }
+
+button.hidden, input.hidden {
+  color: grey;
+  background-color: silver;
+  pointer-events: none;
+}

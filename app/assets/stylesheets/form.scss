@@ -12,7 +12,7 @@
 }
 
 
-input#memos__memo {
+input#memos__memo, input.memos__memo__edit {
   display: block;
   box-sizing: border-box;
   border: none;
@@ -22,4 +22,8 @@ input#memos__memo {
 
 .submit-btn {
   margin: 0 10px;
+}
+
+.dot {
+  margin-top: 3px;
 }
