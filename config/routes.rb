@@ -7,14 +7,19 @@ Rails.application.routes.draw do
   resources :memos, only: [:index, :create] do
     collection do
       get 'pagenation'
+      # get 'editform'
     end
   end
 
-  resources :notes, except: [:index, :show]
-  
   namespace :api do
+    resources :memoforms, only: [:index, :update], defaults: { format: 'json' }
     resources :relationships, only: [:index, :create, :destroy], defaults: { format: 'json' }
   end
+
+
+  resources :notes, except: [:index, :show]
+  
+
 
   resources :relationships, only: [:create, :destroy]
 

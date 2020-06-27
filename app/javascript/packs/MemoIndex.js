@@ -102,8 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
             user_id: own_id,
             follow_id: id
           }
-        )
-        .then(response => {
+        ).then(response => {
           let pick = this.users.find(user => user.id == response.data.id)
           pick.follow_id = response.data.follow_id
         })
@@ -114,8 +113,7 @@ document.addEventListener('DOMContentLoaded', () => {
       unfollowUser: function(id) {
         axios.delete (
           '/api/relationships/' + id,
-        )
-        .then(response => {
+        ).then(response => {
           let pick = this.users.find(user => user.id == response.data.id)
           pick.follow_id = null
         })

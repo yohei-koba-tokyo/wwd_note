@@ -14,7 +14,8 @@ class MemoCollection
 
         Memo.new(
           memo: value['memo'],
-          user_id: value['user_id']
+          user_id: value['user_id'],
+          id: value['id']
         )
         
       end
