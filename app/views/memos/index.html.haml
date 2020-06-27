@@ -1,17 +1,19 @@
 - if user_signed_in?
   = current_user.name
   =link_to "ログアウト", destroy_user_session_path, class:"button",method: :DELETE, data: {"turbolinks" => false}
-  #memo_form
-    - if @todays_memos.present?
+
+  - if @todays_memos.present?
+    #memo_form
       %p 編集
       .memo-form__inside
         .memo-form__inside__line{"v-for" => "memo in memos", ":key" => "memo.id"}
-          ・
+          %p.dot ・
           %input(type="text" class="memos__memo__edit" v-model="memo.memo")
-      %input(type="submit" value="変更する" class="submit-btn"){"@click"=>"changeMemos"}
-    - else
-      %P 新規
-      = render partial: "form", locals: { memos: @memos }
+      %input.hidden(type="submit" value="Submit" class="submit-btn"){"v-if"=>"change"}
+      %input(type="submit" value="Submit" class="submit-btn"){"@click"=>"changeMemos", "v-else"=>""}
+  - else
+    %P 新規
+    = render partial: "form", locals: { memos: @memos }
   #memo 
     = render partial: "weekly_memos"
     .memos__followers{"v-for" => "user in users", ":key" => "user.id"}

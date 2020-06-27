@@ -3,7 +3,7 @@
     - memos.collection.each do |memo|
       = fields_for 'memos[]', memo do |field|
         .memo-form__inside__line
-          ・
+          %p.dot ・
           = field.text_field :memo
   = form.submit "保存する", class:"submit-btn"
   
