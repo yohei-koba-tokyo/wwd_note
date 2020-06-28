@@ -18,6 +18,9 @@ if (document.getElementById('memo') !== null) {
         hoverUserIndex: null,
         noteUrl: "",
         users: [],
+        searchWord: "",
+        onlyFollowers: false,
+        onlyFollowings: false
       },
       components: { App },
       mounted () {
@@ -90,6 +93,12 @@ if (document.getElementById('memo') !== null) {
       computed: {
         filterMemos() {
           return this.memos.slice((this.page - 1) * this.perPage, this.page * this.perPage);
+        },
+        filterUsers: function() {
+          var self = this
+          return this.users.filter(function(user) {
+            return user.name.indexOf(self.searchWord) !== -1;
+          })
         }
       }
     })

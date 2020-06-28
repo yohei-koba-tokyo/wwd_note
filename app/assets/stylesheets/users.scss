@@ -5,6 +5,7 @@ button.following {
   padding: 0;
   border: none;
   background-color: whitesmoke;
+  margin-top: 4px;
 }
 
 button.mouseover {
@@ -15,6 +16,18 @@ button.mouseover {
 .mouseover:hover {
   color: red;
   font-weight: bold;
-
 }
 
+.memos__followers {
+  display: flex;
+  line-height: 30px;
+  margin: 2px 0;
+  &__pic {
+    border-radius: 50%;
+  }
+  &__name {
+    width: 130px;
+    margin-left: 5px;
+    font-size: 1.3rem;
+  }
+}
