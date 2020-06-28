@@ -4,7 +4,6 @@ window.onload = function() {
   if(document.querySelector('input#followers')) {
     var sel = 0;
     function check_reset(mod, num){
-      console.log(sel)
       if(sel == num){
         mod.checked = false;
         sel = 0;
@@ -15,12 +14,12 @@ window.onload = function() {
 
     const followers = document.getElementById('followers');
     const followings = document.getElementById('followings');
+
     followers.addEventListener("click", function() {
       check_reset(this, 1);
     });
     followings.addEventListener("click", function() {
       check_reset(this, 2);
     })
-
   }
 }

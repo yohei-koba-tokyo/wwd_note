@@ -1,3 +1,41 @@
-// Place all the styles related to the relationships controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+button.following {
+  font-size: 1.2rem;
+  width: 100px;
+  height: 20px;
+  padding: 0;
+  border: none;
+  background-color: whitesmoke;
+  margin-top: 4px;
+}
+
+button.mouseover {
+  background-color:pink ;
+
+}
+
+.mouseover:hover {
+  color: red;
+  font-weight: bold;
+}
+
+.memos__followers__index {
+  margin: 10px;
+  width: 100%;
+  text-align: center;
+
+}
+
+.memos__follower {
+  display: flex;
+  justify-content: center;
+  line-height: 30px;
+  margin: 3px auto;
+  &__pic {
+    border-radius: 50%;
+  }
+  &__name {
+    width: 150px;
+    margin-left: 5px;
+    font-size: 1.4rem;
+  }
+}

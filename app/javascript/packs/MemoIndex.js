@@ -81,13 +81,21 @@ if (document.getElementById('memo') !== null) {
             console.log(error);
           });
         },
-        unfollowUser: function(id) {
+        unFollowUser: function(id) {
           axios.delete (
             '/api/relationships/' + id,
           ).then(response => {
             let pick = this.users.find(user => user.id == response.data.id)
             pick.follow_id = null
           })
+        },
+        pushFollowersBtn: function() {
+          this.onlyFollowers = !this.onlyFollowers
+          if (this.onlyFollowings) {this.onlyFollowings = !this.onlyFollowings}
+        },
+        pushFollowingBtn: function() {
+          this.onlyFollowings = !this.onlyFollowings
+          if (this.onlyFollowers) {this.onlyFollowers = !this.onlyFollowers}
         }
       },
       computed: {
@@ -97,7 +105,10 @@ if (document.getElementById('memo') !== null) {
         filterUsers: function() {
           var self = this
           return this.users.filter(function(user) {
-            return user.name.indexOf(self.searchWord) !== -1;
+            var onlyFollowerMode = (user.follower_id == null && self.onlyFollowers) ? true : false
+            var onlyFollowingMode = (user.follow_id == null && self.onlyFollowings) ? true : false
+            user = user.name.indexOf(self.searchWord) !== -1;
+            if (!onlyFollowerMode && !onlyFollowingMode) {return user}
           })
         }
       }
