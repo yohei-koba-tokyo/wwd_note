@@ -1,10 +1,10 @@
 #pagenation
   .weekly_memos__button
-    %button.button#next-week{"@click" => "countUp", "v-if" => "page != 1"} prev
-    %button.button.hidden{"v-else" => ""} prev
+    %button.button#next-week{"@click" => "countUp", "v-if" => "page != 1"} 前ページ
+    %button.button.hidden{"v-else" => ""} 前ページ
     %small {{page}} / {{totalPage}}
-    %button.button#prev-week{"@click" => "countDown", "v-if" => "page != totalPage"} next
-    %button.button.hidden{"v-else" => ""} next
+    %button.button#prev-week{"@click" => "countDown", "v-if" => "page != totalPage"} 次ページ
+    %button.button.hidden{"v-else" => ""} 次ページ
 
   .weekly_memos{"v-for" => "memo in filterMemos", ":key" => "memo.date"}
     %ul.weekly_memos__calendar

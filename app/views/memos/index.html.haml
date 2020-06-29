@@ -1,10 +1,13 @@
 - if user_signed_in?
   = current_user.name
   =link_to "ログアウト", destroy_user_session_path, class:"button",method: :DELETE, data: {"turbolinks" => false}
-
+  %h1.memos
+    = Date.today.to_s(:monthdate).gsub(/^0|\/0/, "^0" => "", "\/0" => "/")
+    %span.memos_index
+      = Date.today.strftime(%w(日曜 月曜 火曜 水曜 木曜 金曜 土曜 )[Date.today.wday])
+    %span.memos_index.smallfont のGoodJob！
   - if @todays_memos.present?
     #memo_form
-      %p 編集
       .memo-form__inside
         .memo-form__inside__line{"v-for" => "memo in memos", ":key" => "memo.id"}
           %p.dot ・
@@ -12,7 +15,6 @@
       %input.hidden(type="submit" value="Submit" class="submit-btn"){"v-if"=>"change"}
       %input(type="submit" value="Submit" class="submit-btn"){"@click"=>"changeMemos", "v-else"=>""}
   - else
-    %P 新規
     = render partial: "form", locals: { memos: @memos }
   #memo 
     = render partial: "weekly_memos"
@@ -32,5 +34,6 @@
           {{ user.name }}
         %button.button.following{"v-if" => "!Boolean(user.follow_id)", "@click" => "followUser(user.id, user.own_id)", "data-turbolinks" => "false"}フォロー
         %button.button.following.mouseover{"v-else" => "", "@click" => "unFollowUser(user.follow_id)", "data-turbolinks" => "false", "@mouseover" => "mouseOverUser(user.id)", "@mouseleave" => "mouseLeaveUser"} {{hoverUserFlag && user.id === hoverUserIndex ? "フォロー解除" : "フォロー中"}}
+      %p{"v-if"=>"filterUsers.length == 0"} 条件にマッチするユーザーはいません
 -else
   =link_to "login", user_session_path, class:"button", data: {"turbolinks" => false}
