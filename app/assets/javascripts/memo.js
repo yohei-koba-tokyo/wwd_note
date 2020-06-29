@@ -11,15 +11,13 @@ window.onload = function() {
         sel = num;
       }
     }
-
     const followers = document.getElementById('followers');
     const followings = document.getElementById('followings');
-
     followers.addEventListener("click", function() {
       check_reset(this, 1);
     });
     followings.addEventListener("click", function() {
       check_reset(this, 2);
-    })
+    });
   }
 }
