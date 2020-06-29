@@ -20,6 +20,7 @@ if (document.getElementById('memo_form') !== null) {
         )
         .then(response =>{
           this.memos = response.data
+          // 以下はコピーを作成するための記述
           this.copy = JSON.parse(JSON.stringify(this.memos))
         })
       },

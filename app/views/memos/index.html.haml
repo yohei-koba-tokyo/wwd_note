@@ -11,9 +11,10 @@
       .memo-form__inside
         .memo-form__inside__line{"v-for" => "memo in memos", ":key" => "memo.id"}
           %p.dot ・
-          %input(type="text" class="memos__memo__edit" v-model="memo.memo")
-      %input.hidden(type="submit" value="Submit" class="submit-btn"){"v-if"=>"change"}
-      %input(type="submit" value="Submit" class="submit-btn"){"@click"=>"changeMemos", "v-else"=>""}
+          %input(type="text" class="memos__memo__form" v-model="memo.memo")
+        %p.verysmall.rightside 1メモあたり50文字以内
+      %input.hidden(type="submit" value="変更する" class="submit-btn"){"v-if"=>"change"}
+      %input(type="submit" value="変更する" class="submit-btn"){"@click"=>"changeMemos", "v-else"=>""}
   - else
     = render partial: "form", locals: { memos: @memos }
   #memo 

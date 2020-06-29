@@ -29,8 +29,10 @@
       min-height: 22px;
       &__rightbtn {
         display: flex;
+        height: 22px;
         a.weekly_memos__memo__line__rightbtn__hover {
           color: skyblue;
+          font-weight: bold;
         }
       }
     }

@@ -13,10 +13,16 @@
 
 button.hidden, input.hidden {
   color: grey;
+  border: white 1px solid;
   background-color: silver;
   pointer-events: none;
 }
 
 .modebtn {
   cursor: pointer;
+}
+
+.rightside {
+  text-align: right;
+  color: grey;
 }

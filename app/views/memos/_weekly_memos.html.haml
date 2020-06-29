@@ -23,19 +23,3 @@
             %span.smallfont Best!ノートを見る
           %p.smallfont{"v-if" => "m[1]"}
             %a.fas.fa-crown{ "@click" => "createNoteEditUrl(m[1].id)", "v-bind:href" => "noteUrl", "data-turbolinks" => "false" }
-
-
-
-
-
-      -# -if [m.id].note.present?
-      -#   = link_to edit_note_path(m.note) do
-      -#     %li.weekly_memos__memo__line
-      -#       %p.smallfont
-      -#         {{ m.memo }}
-      -#       %i.fas.fa-crown
-      -#         best!
-      -# -else
-      -#   = link_to new_note_path(m) do
-      -#     %li.weekly_memos__memo__line
-      -#       %p.smallfont= m.memo
