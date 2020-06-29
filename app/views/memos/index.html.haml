@@ -20,7 +20,7 @@
   #memo 
     = render partial: "weekly_memos"
     .memos__followers__index
-      フレンドを検索
+      フレンド検索:
       %input(type="text" v-model="searchWord" placeholder="ユーザーネームで検索")
       %br/
       %input.modebtn(type="radio" name="userfilter" id="followers"){"@click"=>"pushFollowersBtn"}

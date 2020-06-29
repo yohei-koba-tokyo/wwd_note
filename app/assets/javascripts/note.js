@@ -1,3 +1,5 @@
+// ノートフォームの文字数カウンターです
+
 if(document.URL.match(/notes\//)) {
   window.onload = function() {
     function counter(count) {
