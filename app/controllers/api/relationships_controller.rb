@@ -5,7 +5,10 @@ class Api::RelationshipsController < ApplicationController
 
   def index
     users = User.all.reject{|user| user == current_user}
-    @users_pack = users.map{|user| [user, current_user.following?(user)]}
+    puts "--------------------"
+    p users
+    p current_user
+    @users_pack = users.map{|user| [user, current_user.following?(user), user.following?(current_user)]}
     @current_user = current_user.id
     respond_to do |format|
       format.html { redirect_to :root }
@@ -51,39 +54,3 @@ class Api::RelationshipsController < ApplicationController
   end
 
 end
-
-
-
-
-# class RelationshipsController < ApplicationController
-#   before_action :set_user
-
-#   def create
-#     following = current_user.follow(@user)
-#     if following.save
-#       flash[:success] = 'ユーザーをフォローしました'
-#       redirect_to root_path
-#     else
-#       flash.now[:alert] = 'ユーザーのフォローに失敗しました'
-#       redirect_to root_path
-#     end
-#   end
-
-#   def destroy
-#     following = current_user.unfollow(@user)
-#     if following.destroy
-#       flash[:success] = 'ユーザーのフォローを解除しました'
-#       redirect_to root_path
-#     else
-#       flash.now[:alert] = 'ユーザーのフォロー解除に失敗しました'
-#       redirect_to root_path
-#     end
-#   end
-
-#   private
-#   def set_user
-#     @user = User.find(params[:relationship][:follow_id])
-#     # @user = User.find params[:follow_id]
-#   end
-
-# end

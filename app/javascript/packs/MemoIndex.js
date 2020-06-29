@@ -18,6 +18,9 @@ if (document.getElementById('memo') !== null) {
         hoverUserIndex: null,
         noteUrl: "",
         users: [],
+        searchWord: "",
+        onlyFollowers: false,
+        onlyFollowings: false
       },
       components: { App },
       mounted () {
@@ -78,18 +81,35 @@ if (document.getElementById('memo') !== null) {
             console.log(error);
           });
         },
-        unfollowUser: function(id) {
+        unFollowUser: function(id) {
           axios.delete (
             '/api/relationships/' + id,
           ).then(response => {
             let pick = this.users.find(user => user.id == response.data.id)
             pick.follow_id = null
           })
+        },
+        pushFollowersBtn: function() {
+          this.onlyFollowers = !this.onlyFollowers
+          if (this.onlyFollowings) {this.onlyFollowings = !this.onlyFollowings}
+        },
+        pushFollowingBtn: function() {
+          this.onlyFollowings = !this.onlyFollowings
+          if (this.onlyFollowers) {this.onlyFollowers = !this.onlyFollowers}
         }
       },
       computed: {
         filterMemos() {
           return this.memos.slice((this.page - 1) * this.perPage, this.page * this.perPage);
+        },
+        filterUsers: function() {
+          var self = this
+          return this.users.filter(function(user) {
+            var onlyFollowerMode = (user.follower_id == null && self.onlyFollowers) ? true : false
+            var onlyFollowingMode = (user.follow_id == null && self.onlyFollowings) ? true : false
+            user = user.name.indexOf(self.searchWord) !== -1;
+            if (!onlyFollowerMode && !onlyFollowingMode) {return user}
+          })
         }
       }
     })

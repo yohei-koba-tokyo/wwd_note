@@ -3,5 +3,6 @@ json.array! @users_pack do |user|
   json.name user[0].name
   json.image user[0].image
   json.follow_id user[1]
+  json.follower_id user[2]
   json.own_id @current_user
 end
