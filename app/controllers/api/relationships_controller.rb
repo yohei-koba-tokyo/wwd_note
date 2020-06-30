@@ -5,9 +5,6 @@ class Api::RelationshipsController < ApplicationController
 
   def index
     users = User.all.reject{|user| user == current_user}
-    puts "--------------------"
-    p users
-    p current_user
     @users_pack = users.map{|user| [user, current_user.following?(user), user.following?(current_user)]}
     @current_user = current_user.id
     respond_to do |format|

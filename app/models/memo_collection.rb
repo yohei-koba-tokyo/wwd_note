@@ -11,20 +11,18 @@ class MemoCollection
   def initialize(attributes = [])
     if attributes.present?
       self.collection = attributes.map do |value|
-
+        value['memo'] = "" if (value['memo'] == nil)
         Memo.new(
           memo: value['memo'],
           user_id: value['user_id'],
           id: value['id']
         )
-        
       end
-      p self.collection
+      self.collection
     else
       self.collection = MEMO_NUM.times.map{ Memo.new }
     end
   end
-
   # レコードが存在するか確認するメソッド
   def persisted?
     false

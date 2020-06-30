@@ -4,7 +4,7 @@
 
 .memo-form__inside {
   border: solid 1px black;
-  padding: 10px;
+  padding: 10px 10px 5px 10px;
   margin: 10px;
   &__line {
     display:flex;
@@ -26,4 +26,24 @@ input.memos__memo__form {
 
 .dot {
   margin-top: 3px;
+}
+
+span.goodjob {
+  display: inline-block;
+  position: relative; 
+  padding: 5px 10px;
+  border-radius: 8px;
+  background: pink;
+  font-weight: bold;
+  color: white;
+}
+
+span.goodjob:after {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  top: 10px; 
+  left: -18px;
+  border: 7px solid transparent;
+  border-right: 12px solid pink;
 }
