@@ -40,34 +40,8 @@ button.mouseover {
   }
 }
 
-// .fade-move {
-//   transition: transform 1.5s;
-// }
-// .fade-enter {
-//   opacity: 0;
-//   transform: translateY(-20px);
-// }
-// .fade-enter-active {
-//   transition: opacity 1.5s;
-// }
-// .fade-enter-to {
-//   opacity: 1;
-// }
-// .fade-leave {
-//   opacity: 1;
-// }
-// .fade-leave-active {
-//   position: absolute;
-//   width: 100%;
-// }
-// .fade-leave-to {
-//   opacity: 0;
-//   transform: translateY(20px);
-// }
-
-
 .fade-enter-active, .fade-leave-active, .fade-move {
-  transition: opacity 0.2s, transform 0.2s;
+  transition: opacity 0.3s, transform 0.3s;
 }
 .fade-leave-active {
   position: absolute;

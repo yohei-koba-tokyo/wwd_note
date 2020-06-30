@@ -16,11 +16,13 @@
       %li.weekly_memos__memo__line{"v-for" => "m in memo.memo", ":key" => "m[0].id", "@mouseover" => "mouseOverAction(m[0].id)", "@mouseleave" => "mouseLeaveAction()"}
         %p.smallfont {{ m[0].memo }}
         .weekly_memos__memo__line__rightbtn
-          %transition{"enter-active-class"=>"animate__animated animate__pulse"}
+          %transition{"enter-active-class"=>"animate__animated animate__bounceInRight"}
             %a.weekly_memos__memo__line__rightbtn__hover{"v-if" => "hoverFlag && m[0].id === hoverIndex && m[1] === null", "@click" => "createNoteNewUrl(m[0].id)", "v-bind:href" => "noteUrl", "data-turbolinks" => "false" }
               %span.smallfont Best！に選ぶ
               %p.fas.fa-check
-          %a.weekly_memos__memo__line__rightbtn__hover{"v-if" => "hoverFlag && m[0].id === hoverIndex && m[1]", "@click" => "createNoteEditUrl(m[1].id)", "v-bind:href" => "noteUrl", "data-turbolinks" => "false" }
-            %span.smallfont ノートを見る
-          %p.smallfont{"v-if" => "m[1]"}
-            %a.fas.fa-crown{ "@click" => "createNoteEditUrl(m[1].id)", "v-bind:href" => "noteUrl", "data-turbolinks" => "false" }
+          %transition{"enter-active-class"=>"animate__animated animate__bounceInRight"} 
+            %a.weekly_memos__memo__line__rightbtn__hover{"v-if" => "hoverFlag && m[0].id === hoverIndex && m[1]", "@click" => "createNoteEditUrl(m[1].id)", "v-bind:href" => "noteUrl", "data-turbolinks" => "false" }
+              %span.smallfont ノートを見る
+          %transition(appear){"enter-active-class"=>"animate__animated animate__heartBeat"}
+            %p.smallfont{"v-if" => "m[1]"}
+              %a.fas.fa-crown{ "@click" => "createNoteEditUrl(m[1].id)", "v-bind:href" => "noteUrl", "data-turbolinks" => "false" }
