@@ -19,7 +19,7 @@
       %input.hidden(type="submit" value="保存する" class="submit-btn"){"v-if"=>"change"}
       %input(type="submit" value="保存する" class="submit-btn"){"@click"=>"changeMemos", "v-else"=>""}
     
-    %transition{"name"=>"popup", "appear"=>"","enter-active-class"=>"animate__animated animate__tada", "leave-active-class"=>"animate__animated animate__bounceOut"}
+    %transition{"appear"=>"","enter-active-class"=>"animate__animated animate__tada", "leave-active-class"=>"animate__animated animate__bounceOut"}
       %span.goodjob{"v-if"=>"popup"} GoodJob !!
   
   #memo 
@@ -33,13 +33,13 @@
       %input.modebtn(type="radio" name="userfilter" id="followings"){"@click"=>"pushFollowingBtn"}
         %label.modebtn(for="followings")フォロー中のみ
 
-
-      .memos__follower{"v-for" => "user in filterUsers", ":key" => "user.id"}
-        %img.memos__follower__pic{":src" => "user.image.url", "width" => "30", "height" => "30"}
-        %p.memos__follower__name
-          {{ user.name }}
-        %button.button.following{"v-if" => "!Boolean(user.follow_id)", "@click" => "followUser(user.id, user.own_id)", "data-turbolinks" => "false"}フォロー
-        %button.button.following.mouseover{"v-else" => "", "@click" => "unFollowUser(user.follow_id)", "data-turbolinks" => "false", "@mouseover" => "mouseOverUser(user.id)", "@mouseleave" => "mouseLeaveUser"} {{hoverUserFlag && user.id === hoverUserIndex ? "フォロー解除" : "フォロー中"}}
+      %transition-group{"name"=>"fade"}
+        .memos__follower{"v-for" => "user in filterUsers", ":key" => "user.id"}
+          %img.memos__follower__pic{":src" => "user.image.url", "width" => "30", "height" => "30"}
+          %p.memos__follower__name
+            {{ user.name }}
+          %button.button.following{"v-if" => "!Boolean(user.follow_id)", "@click" => "followUser(user.id, user.own_id)", "data-turbolinks" => "false"}フォロー
+          %button.button.following.mouseover{"v-else" => "", "@click" => "unFollowUser(user.follow_id)", "data-turbolinks" => "false", "@mouseover" => "mouseOverUser(user.id)", "@mouseleave" => "mouseLeaveUser"} {{hoverUserFlag && user.id === hoverUserIndex ? "フォロー解除" : "フォロー中"}}
       %p{"v-if"=>"filterUsers.length == 0"} 条件にマッチするユーザーはいません
 -else
   =link_to "login", user_session_path, class:"button", data: {"turbolinks" => false}
