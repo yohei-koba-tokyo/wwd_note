@@ -10,7 +10,8 @@ if (document.getElementById('memo_form') !== null) {
       data: {
         memos: [],
         copy: [],
-        change: true
+        change: true,
+        popup: false
       },
       components: { App },
 
@@ -25,6 +26,20 @@ if (document.getElementById('memo_form') !== null) {
         })
       },
       methods: {
+        createMemos: function() {
+          axios.post (
+            '/api/memoforms',
+            {
+              memos: this.memos
+            }
+          ).then(response => {
+            this.memos = response.data
+            this.copy = JSON.parse(JSON.stringify(this.memos));
+            this.change = !this.change;
+            this.popup = true;
+            setTimeout(this.enable, 3000);
+          })
+        },
         changeMemos: function() {
           this.memos.forEach(function(memo) {
             axios.patch (
@@ -32,18 +47,24 @@ if (document.getElementById('memo_form') !== null) {
               {
                 memo: memo.memo
               }
-            ).then(response => {
-              console.log(response.config.data)
-            })
+            )
           })
+          this.copy = JSON.parse(JSON.stringify(this.memos));
+          this.change = !this.change;
+          this.popup = true;
+          setTimeout(this.enable, 3000);
+        },
+        enable:function() {
+          this.popup = false;
         }
+
       },
       watch: {
         memos: {
-          handler: function(val) {
+          handler: function(val, oldVal) {
             this.change = JSON.stringify(val) == JSON.stringify(this.copy) ? true : false
           },deep: true
-        }
+        },
       }
     })
   })

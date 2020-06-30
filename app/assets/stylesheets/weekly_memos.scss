@@ -32,17 +32,17 @@
         height: 22px;
         a.weekly_memos__memo__line__rightbtn__hover {
           color: skyblue;
-          font-weight: bold;
+          // font-weight: bold;
         }
       }
     }
-    &__line:hover {
-      background-color: lemonchiffon;
-    }
+    // &__line:hover {
+    //   background-color: lemonchiffon;
+    // }
   }
 }
 
-a.fas.fa-crown {
+a.fas.fa-crown, p.fas.fa-check {
   color: goldenrod;
   line-height: 22px;
 }

@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   end
 
   namespace :api do
-    resources :memoforms, only: [:index, :update], defaults: { format: 'json' }
+    resources :memoforms, only: [:index, :create, :update], defaults: { format: 'json' }
     resources :relationships, only: [:index, :create, :destroy], defaults: { format: 'json' }
   end
 
