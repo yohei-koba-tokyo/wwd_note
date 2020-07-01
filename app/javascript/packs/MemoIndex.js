@@ -20,7 +20,8 @@ if (document.getElementById('memo') !== null) {
         users: [],
         searchWord: "",
         onlyFollowers: false,
-        onlyFollowings: false
+        onlyFollowings: false,
+        notes: [],
       },
       components: { App },
       mounted () {
@@ -38,6 +39,11 @@ if (document.getElementById('memo') !== null) {
         .then(response =>{
           this.users = response.data;
         });
+        axios.get (
+          '/memos/timeline.json'
+        ).then(response =>{
+          this.notes = response.data;
+      })
       },
       methods: {
         countUp: function() {
@@ -109,6 +115,18 @@ if (document.getElementById('memo') !== null) {
             var onlyFollowingMode = (user.follow_id == null && self.onlyFollowings) ? true : false
             user = user.name.indexOf(self.searchWord) !== -1;
             if (!onlyFollowerMode && !onlyFollowingMode) {return user}
+          })
+        },
+        followingUsers: function() {
+          return this.users.filter(function(user){
+            if (user.follow_id !== null) {return user}
+          })
+        },
+        filterNotes: function() {
+          var userIds = this.followingUsers.map(function(user){return user.id})
+          userIds.push
+          return this.notes.filter(function(note){
+            if (userIds.includes(note.user.id)){return note}
           })
         }
       }

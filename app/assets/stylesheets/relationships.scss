@@ -19,15 +19,16 @@ button.mouseover {
 }
 
 .memos__followers__index {
-  margin: 10px;
+  margin: 10px 0;
   width: 100%;
-  text-align: center;
+  height: 250px;
+  // text-align: center;
 
 }
 
 .memos__follower {
   display: flex;
-  justify-content: center;
+  // justify-content: center;
   line-height: 30px;
   margin: 3px auto;
   &__pic {

@@ -26,22 +26,35 @@
   
   #memo 
     = render partial: "weekly_memos"
-    .memos__followers__index
-      フレンド検索:
-      %input(type="text" v-model="searchWord" placeholder="ユーザーネームで検索")
-      %br/
-      %input.modebtn(type="radio" name="userfilter" id="followers"){"@click"=>"pushFollowersBtn"}
-        %label.modebtn(for="followers")フォロワーのみ　
-      %input.modebtn(type="radio" name="userfilter" id="followings"){"@click"=>"pushFollowingBtn"}
-        %label.modebtn(for="followings")フォロー中のみ
+    .side-bar
+      .memos__timeline
+        %transition-group(appear){"name"=>"fade"}
+          .memos__timeline__note{"v-for"=>"note in filterNotes", ":key" => "note.id"}
+            .memos__timeline__note__label
+              %img.memos__follower__pic{":src" => "note.user.image.url", "width" => "30", "height" => "30"}
+              %p.memos__timeline__note__label__name.smallfont
+                {{note.user.name}}
+              %p.memos__timeline__note__label__date.smallfont {{note.created_at}}{{note.week}}
+            %p.smallfont {{note.challenge}}
 
-      %transition-group(appear){"name"=>"fade"}
-        .memos__follower{"v-for" => "user in filterUsers", ":key" => "user.id"}
-          %img.memos__follower__pic{":src" => "user.image.url", "width" => "30", "height" => "30"}
-          %p.memos__follower__name
-            {{ user.name }}
-          %button.button.following{"v-if" => "!Boolean(user.follow_id)", "@click" => "followUser(user.id, user.own_id)", "data-turbolinks" => "false"}フォロー
-          %button.button.following.mouseover{"v-else" => "", "@click" => "unFollowUser(user.follow_id)", "data-turbolinks" => "false", "@mouseover" => "mouseOverUser(user.id)", "@mouseleave" => "mouseLeaveUser"} {{hoverUserFlag && user.id === hoverUserIndex ? "フォロー解除" : "フォロー中"}}
-      %p{"v-if"=>"filterUsers.length == 0"} 条件にマッチするユーザーはいません
+      .memos__followers__index
+        フレンド検索:
+        %input(type="text" v-model="searchWord" placeholder="ユーザーネームで検索")
+        %br/
+        %input.modebtn(type="radio" name="userfilter" id="followers"){"@click"=>"pushFollowersBtn"}
+          %label.modebtn(for="followers")フォロワーのみ　
+        %input.modebtn(type="radio" name="userfilter" id="followings"){"@click"=>"pushFollowingBtn"}
+          %label.modebtn(for="followings")フォロー中のみ
+
+        %transition-group(appear){"name"=>"fade"}
+          .memos__follower{"v-for" => "user in filterUsers", ":key" => "user.id"}
+            %img.memos__follower__pic{":src" => "user.image.url", "width" => "30", "height" => "30"}
+            %p.memos__follower__name
+              {{ user.name }}
+            %button.button.following{"v-if" => "!Boolean(user.follow_id)", "@click" => "followUser(user.id, user.own_id)", "data-turbolinks" => "false"}フォロー
+            %button.button.following.mouseover{"v-else" => "", "@click" => "unFollowUser(user.follow_id)", "data-turbolinks" => "false", "@mouseover" => "mouseOverUser(user.id)", "@mouseleave" => "mouseLeaveUser"} {{hoverUserFlag && user.id === hoverUserIndex ? "フォロー解除" : "フォロー中"}}
+        %p{"v-if"=>"filterUsers.length == 0"} 条件にマッチするユーザーはいません
+
+
 -else
   =link_to "login", user_session_path, class:"button", data: {"turbolinks" => false}

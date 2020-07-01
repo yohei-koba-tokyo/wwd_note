@@ -4,9 +4,10 @@ Rails.application.routes.draw do
   
   root 'memos#index'
   
-  resources :memos, only: [:index, :create] do
+  resources :memos, only: [:index] do
     collection do
       get 'pagenation'
+      get 'timeline'
     end
   end
 
