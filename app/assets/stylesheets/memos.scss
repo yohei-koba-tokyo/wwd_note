@@ -1,13 +1,25 @@
-.side-bar {
-  width: 300px;
-  height: 50vh;
-}
 
-span.memos_index {
+span.memos_title {
   margin-left: -5px;
 }
 
 .memos {
   margin: 10px;
   margin-bottom: -10px;
+}
+
+.side-bar {
+  width: 300px;
+  height: calc( 100vh - 210px );
+  display: flex;
+  flex-direction: column;
+}
+#memo_form {
+  // width: calc( 100% - 300px );
+}
+#memo {
+  display:flex;
+}
+#pagenation {
+  width: 100%;
 }

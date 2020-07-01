@@ -32,7 +32,10 @@ if (document.getElementById('memo') !== null) {
           this.memos = response.data;
           this.count = response.data.length;
           this.totalPage = Math.ceil(this.count / this.perPage);
-        });
+        }).catch(error => {
+          console.log(error)
+          console.log("data_empty?")
+        })
         axios.get (
           '/api/relationships'
         )

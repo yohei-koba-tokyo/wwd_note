@@ -18,17 +18,20 @@ button.mouseover {
   font-weight: bold;
 }
 
+
+// サイドバーのメインボックス下段
 .memos__followers__index {
-  margin: 10px 0;
-  width: 100%;
+  background-color: linen;
+  margin: 3px;
+  padding: 3px;
+  width: calc(100%-10px);
   height: 250px;
   // text-align: center;
-
 }
 
 .memos__follower {
   display: flex;
-  // justify-content: center;
+  justify-content: space-between;
   line-height: 30px;
   margin: 3px auto;
   &__pic {
@@ -36,7 +39,7 @@ button.mouseover {
   }
   &__name {
     width: 150px;
-    margin-left: 5px;
+    margin-left: 10px;
     font-size: 1.4rem;
   }
 }

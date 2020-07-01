@@ -1,15 +1,40 @@
 .memos__timeline {
-  width: 100%;
-  height: 100%;
-  &__note__label {
-    display: flex;
-    line-height: 30px;
-    &__name {
-      margin-left: 10px;
-    }
-    &__date {
-      color: grey;
-      margin-left: 10px;
+  flex: 1;
+  margin: 11px 3px 3px 3px;
+  padding: 3px;
+  background-color: linen;
+  &__note {
+    margin: 10px 0;
+    &__label {
+      display: flex;
+      justify-content: space-between;
+      line-height: 30px;
+      &__left {
+        display: flex;
+      }
+      &__name {
+        margin-left: 10px;
+      }
+      &__right {
+        display: flex;
+        i.fas.fa-comment-dots {
+          color: grey;
+          line-height: 30px;
+          margin-right: 15px;
+          // position: relative;
+          // top: 1px;
+        }
+        i.fas.fa-heart {
+          color: red;
+          line-height: 30px;
+        }
+        &__date {
+          font-size: 1rem;
+          color: grey;
+          width: 50px;
+          text-align: right;
+        }
+      }
     }
   }
 }
