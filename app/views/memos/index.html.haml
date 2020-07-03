@@ -26,8 +26,8 @@
   #memo 
     = render partial: "weekly_memos"
     .side-bar
-      -# = current_user.name
-      -# =link_to "ログアウト", destroy_user_session_path, class:"button",method: :DELETE, data: {"turbolinks" => false}
+      = current_user.name
+      =link_to "ログアウト", destroy_user_session_path, class:"button",method: :DELETE, data: {"turbolinks" => false}
       .memos__timeline
         %transition-group(appear){"name"=>"fade"}
           .memos__timeline__note{"v-for"=>"note in filterNotes", ":key" => "note.id"}
