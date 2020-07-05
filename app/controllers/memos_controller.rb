@@ -19,7 +19,8 @@ class MemosController < ApplicationController
   end
 
   def timeline
-    @notes = Note.all.reverse
+    @notes = Note.all.includes([:likes, :user]).reverse
+    @current_id = current_user.id
     respond_to do |format|
       format.json
     end

@@ -18,20 +18,27 @@
       &__right {
         display: flex;
         i.fas.fa-comment-dots {
-          color: grey;
+          color: skyblue;
           line-height: 30px;
-          margin-right: 15px;
-          // position: relative;
-          // top: 1px;
+          margin: 0 5px;
+          cursor: pointer;
+        }
+        i.gray.fas.fa-comment-dots {
+          color: gray;
         }
         i.fas.fa-heart {
           color: red;
           line-height: 30px;
+          margin: 0 5px;
+          cursor: pointer;
+        }
+        .gray.fas.fa-heart {
+          color: grey;
         }
         &__date {
           font-size: 1rem;
           color: grey;
-          width: 50px;
+          width: 45px;
           text-align: right;
         }
       }

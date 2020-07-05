@@ -1,5 +1,4 @@
 - if user_signed_in?
-
   %h2.memos
     = Date.today.to_s(:monthdate).gsub(/^0|\/0/, "^0" => "", "\/0" => "/")
     %span.memos_title
@@ -36,12 +35,19 @@
                 %img.memos__follower__pic{":src" => "note.user.image.url", "width" => "30", "height" => "30"}
                 %p.memos__timeline__note__label__name.smallfont
                   {{note.user.name}}
+
+
               .memos__timeline__note__label__right
-                %i.fas.fa-comment-dots
-                %i.fas.fa-heart
+                .memos__timeline__note__label__right__comment{"@click"=>"createComment(note.id)"}
+                  %i.fas.fa-comment-dots{"v-if"=>"note.comment"}
+                  %i.gray.fas.fa-comment-dots{"v-else"=>""}
+                .memos__timeline__note__label__right__like{"@click"=>"createLike(note.id)"}
+                  %i.fas.fa-heart{"v-if"=>"note.like"}
+                  %i.gray.fas.fa-heart{"v-else"=>""}
+
+
                 %p.memos__timeline__note__label__right__date {{note.created_at}}{{note.week}}
             %p.smallfont {{note.challenge}}
-
       .memos__followers__index
         フレンド検索:
         %input(type="text" v-model="searchWord" placeholder="ユーザーネームで検索")

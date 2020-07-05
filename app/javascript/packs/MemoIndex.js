@@ -22,6 +22,9 @@ if (document.getElementById('memo') !== null) {
         onlyFollowers: false,
         onlyFollowings: false,
         notes: [],
+
+
+        
       },
       components: { App },
       mounted () {
@@ -46,7 +49,7 @@ if (document.getElementById('memo') !== null) {
           '/memos/timeline.json'
         ).then(response =>{
           this.notes = response.data;
-      })
+        });
       },
       methods: {
         countUp: function() {
@@ -105,7 +108,31 @@ if (document.getElementById('memo') !== null) {
         pushFollowingBtn: function() {
           this.onlyFollowings = !this.onlyFollowings
           if (this.onlyFollowers) {this.onlyFollowers = !this.onlyFollowers}
+        },
+
+        createComment: function(id) {
+          let pick = this.notes.find(note=>note.id==id)
+          if (pick.comment == null) {
+            console.log(pick.comment)
+          } else {
+            console.log("delete")
+          }
+        },
+        createLike: function(id) {
+          let pick = this.notes.find(note=>note.id==id)
+          if (pick.like == null) {
+            console.log(pick.like)
+            axios.post (
+              '/api/likes',
+              {
+                note_id: id
+              }
+            )
+          } else {
+            console.log("delete")
+          }
         }
+
       },
       computed: {
         filterMemos() {
