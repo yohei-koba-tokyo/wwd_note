@@ -18,11 +18,11 @@
     %template{"v-else"=>""}
       %input.hidden(type="submit" value="保存する" class="submit-btn"){"v-if"=>"change"}
       %input(type="submit" value="保存する" class="submit-btn"){"@click"=>"changeMemos", "v-else"=>""}
-    
+
     %transition{"appear"=>"","enter-active-class"=>"animate__animated animate__tada", "leave-active-class"=>"animate__animated animate__bounceOut"}
       %span.goodjob{"v-if"=>"popup"} GoodJob !!
-  
-  #memo 
+
+  #memo
     = render partial: "weekly_memos"
     .side-bar
       = current_user.name
@@ -38,11 +38,13 @@
 
 
               .memos__timeline__note__label__right
+
                 .memos__timeline__note__label__right__comment{"@click"=>"createComment(note.id)"}
-                  %i.fas.fa-comment-dots{"v-if"=>"note.comment"}
+                  %i.fas.fa-comment-dots{"v-if"=>"note.comment !== null"}
                   %i.gray.fas.fa-comment-dots{"v-else"=>""}
+
                 .memos__timeline__note__label__right__like{"@click"=>"createLike(note.id)"}
-                  %i.fas.fa-heart{"v-if"=>"note.like"}
+                  %i.fas.fa-heart{"v-if"=>"note.like !== null"}
                   %i.gray.fas.fa-heart{"v-else"=>""}
 
 

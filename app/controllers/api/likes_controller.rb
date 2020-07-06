@@ -6,9 +6,10 @@ class Api::LikesController < ApplicationController
     @like = Like.new(like_params)
     @like.save
   end
-  
+
   def destroy
-    @like = like.find(params[:id])
+    @like = Like.find(params[:id])
+    @like.destroy
   end
 
   private
